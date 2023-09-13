@@ -1,0 +1,60 @@
+---
+title: "Donate"
+---
+
+### **lavaan is free**
+
+The lavaan package is free (as in beer) and open-source. We very much plan to keep it that way. But the [bus factor](https://en.wikipedia.org/wiki/Bus_factor) of the lavaan project is (currently) one, and the main developer (Yves Rosseel) finds it increasingly more difficult to find time to maintain (let alone further develop) lavaan.
+
+At the same time, the number of lavaan users continues to grow, and lavaan has become 'critical software' in many research domains.
+
+This is not a sustainable situation, and we are looking for ways to hire more staff to support the lavaan project. One avenue is to ask for donations.
+
+### **Donations**
+
+From 1 July 2023 onwards, it is possible to donate money to the lavaan project.
+The money will go to [Ghent University](https://www.ugent.be/schenken/en), and
+will be used exclusively to hire staff (at the post-doc level) that will
+support the lavaan project.
+
+At the end of the year, we will list all individuals/projects/businesses/organizations that have made a donation (unless they opt out) on this website.
+
+### **What are the donations for?**
+
+Our initial goal is to raise about 120,000 euro (the gross salary of a post-doc in Flanders) to hire a qualified person for 1 full year (hopefully, starting early 2024).
+
+This person will assist the main developer to:
+
+1.  create high-quality documentation for users,
+2.  create detailed technical documentation (matching the code), and
+3.  create a public cloud-based quality-testing platform to ensure the correctness of the lavaan output (in particular after a new update).
+4.  add new features to lavaan
+
+### **How to make a donation**
+
+Donations can be made using the following link (note: you will be redirected to the domain actieplatform.ugent.be):
+
+<form action="https://actieplatform.ugent.be/en-GB/p/lavaan-project/step-1" method="get" target="_blank"><button class="btn btn-outline-warning" type="submit">DONATE for lavaan</button></form><br>
+
+If you prefer using a bank transfer, please use the following details:
+
+-   Beneficiary: UNIVERSITEIT GENT
+-   IBAN: BE26 3900 9658 0329 (remove spaces if necessary)
+-   Swift code (BIC): BBRUBEBB
+-   Bank reference: FWUGENTPP1226
+
+For more information about the donation process, tax certificates, etcetera, please contact the friendly people of the [University Fund](https://www.ugent.be/schenken/en/contact) of Ghent University.
+
+
+### Research project/grant money 
+
+If you have received a research project grant and are currently utilizing
+lavaan in your research, we kindly request that you contemplate contributing a
+financial contribution to support the lavaan project.
+
+Please be aware that most funding agencies do not permit the use of project
+funds for donations. Nevertheless, you have the option to make a voluntary
+payment for 'lavaan support,' and we can provide you with an official invoice
+upon request. To proceed with this, kindly get in touch with
+Isabelle Saelens (email: Isabelle.Saelens@UGent.be), who will provide
+you with additional guidance.

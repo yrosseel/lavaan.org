@@ -1,0 +1,22 @@
+---
+title: Book Chapters 
+---
+
+#### Book Chapters
+
+On this page, we collect book chapters written about lavaan. They can contain tutorials, examples, or perhaps illustrate how to fit a complicated model using lavaan.
+
+#### Structural Equation Modeling: an applied approach for Engineers (Portugese)
+
+::: grid
+::: g-col-4
+![](bido.jpg){fig-alt="Bido book chapter" width="100%"}
+:::
+
+::: g-col-8
+- book chapter title: Modelagem de equações estruturais: uma visão aplicada para a engenharia
+- book chapter author: Diógenes Bido
+- book title: Metodologia Científica para Engenharia
+- book publisher: [Elsevier](https://www.grupogen.com.br/metodologia-cientifica-para-engenharia)
+:::
+:::

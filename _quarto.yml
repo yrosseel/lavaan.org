@@ -1,0 +1,84 @@
+project:
+  type: website
+  resources: tutorial.pdf, tutorial.R
+
+website:
+  title: "lavaan.org"
+
+  page-footer:
+      right: "This page is built with [Quarto](https://quarto.org/)."
+      left: "&copy; CC-By the lavaan project, 2010-2023"
+
+  navbar:
+    background: secondary
+    search: true
+    left:
+      - text: "About lavaan"
+        file: index.qmd
+      - text: "Tutorial"
+        file: tutorial/index.qmd
+      - text: "Resources"
+        file: resources/index.qmd
+      - text: "Donate"
+        href: https://actieplatform.ugent.be/en-GB/p/lavaan-project/step-1
+      - text: "Version History"
+        file: history/index.qmd
+
+  sidebar:
+    - title: "About lavaan"
+      style: "docked"
+      background: light
+      contents:
+        - index.qmd
+        - about/gettingstarted.qmd
+        - about/features.qmd
+        - about/development.qmd
+        - about/support.qmd
+        - about/donate.qmd
+        - about/about.qmd
+
+    - title: "Tutorial"
+      contents:
+        - tutorial/index.qmd
+        - tutorial/before.qmd
+        - tutorial/install.qmd
+        - tutorial/syntax1.qmd
+        - tutorial/cfa.qmd
+        - tutorial/sem.qmd
+        - tutorial/syntax2.qmd
+        - tutorial/means.qmd
+        - tutorial/groups.qmd
+        - tutorial/growth.qmd
+        - tutorial/cat.qmd
+        - tutorial/cov.qmd
+        - tutorial/est.qmd
+        - tutorial/mediation.qmd
+        - tutorial/modindices.qmd
+        - tutorial/inspect.qmd
+        - tutorial/multilevel.qmd
+        - tutorial/efa.qmd
+
+    - title: "Resources"
+      contents:
+        - resources/index.qmd
+        - resources/books.qmd
+        - resources/chapters.qmd
+        - resources/video.qmd
+        - resources/teaching.qmd
+        - resources/related.qmd
+        - resources/code.qmd
+        - resources/tutorial.qmd
+
+    - title: "Version History"
+      contents:
+        - history/index.qmd
+        - history/dot6.qmd
+        - history/dot5.qmd
+        - history/dot4.qmd
+        - history/dot3.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true

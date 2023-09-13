@@ -1,0 +1,17 @@
+---
+title: Installation
+---
+
+The lavaan package is available on CRAN. Therefore, to install lavaan, simply start up R, and type in the R console:
+
+```{r eval=FALSE}
+install.packages("lavaan", dependencies = TRUE)
+```
+
+You can check if the installation was succesful by typing
+
+```{r eval=TRUE, comment=""}
+library(lavaan)
+```
+
+A startup message will be displayed showing the version number (always report this in your papers), and a reminder that this is free software. If you see this message, you are ready to start.

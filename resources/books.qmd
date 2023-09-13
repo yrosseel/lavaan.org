@@ -1,0 +1,121 @@
+---
+title: Books
+---
+
+On this page, we hope to provide lavaan syntax (or R syntax in general) to replicate the examples given in several books on structural equation modeling, factor analysis, latent variable analysis, and related methods.
+
+If you have worked out the syntax for (many, perhaps not all) examples from a particular book that is not yet listed below, please contact me if you are willing to share your code on this page.
+
+#### Structural Equation Modeling with lavaan
+
+::: grid
+::: g-col-4
+![](ganabroc.jpg){fig-alt="Gana and Broc book" width="100%"}
+:::
+
+::: g-col-8
+-   book title: Structural Equation Modeling with lavaan
+-   book author: Guillaume Broc and Kamel Gana
+-   book publisher: [ISTE/Wiley](http://www.iste.co.uk/book.php?id=1437)
+:::
+:::
+
+#### Structural Equation Modeling with R (Korean)
+
+::: grid
+::: g-col-4
+![](kimgyesoo.jpg){fig-alt="Kim Gye-Soo book" width="100%"}
+:::
+
+::: g-col-8
+-   book title: Structural Equation Modeling with R
+-   book author: [Kim Gye-Soo](https://sites.google.com/view/kimgyesoo)
+-   book publisher: [Hannarae Publishing Co](http://www.hannarae.net).
+:::
+:::
+
+#### Lineare Strukturgleichungsmodelle: Eine Einführung mit R
+
+::: grid
+::: g-col-4
+![](holgersteinmetz.jpg){fig-alt="Steinmetz book" width="100%"}
+:::
+
+::: g-col-8
+-   book title: Lineare Strukturgleichungsmodelle: Eine Einführung mit R
+-   book author: Holger Steinmetz
+-   book publisher: [Rainer Hampp Verlag](http://hermes.hsu-hh.de/sowifome/2014/12/09/band-9-lineare-strukturgleichungsmodelle-eine-einfuehrung-mit-r)
+:::
+:::
+
+#### Strukturgleichungsmodelle in den Sozialwissenschaften
+
+::: grid
+::: g-col-4
+![](reinecke.jpg){fig-alt="Reinecke book" width="100%"}
+:::
+
+::: g-col-8
+- book title: Strukturgleichungsmodelle in den Sozialwissenschaften
+- book author: Jost Reinecke
+- book publisher: [De Gruyter Oldenbourg](http://www.degruyter.com/view/product/214112)
+:::
+:::
+
+#### Latent Variable Modeling using R: A Step-By-Step Guide
+
+::: grid
+::: g-col-4
+![](nj3bk1.jpg){fig-alt="Beaujean book" width="100%"}
+:::
+
+::: g-col-8
+- book title: Latent Variable Modeling using R: A Step-By-Step Guide
+- book author: A. Alexander Beaujean
+- book publisher: [Routledge](http://www.routledge.com/books/details/9781848726994/)
+- R syntax from the author is available on [this page](http://blogs.baylor.edu/rlatentvariable/sample-page/r-syntax/)
+:::
+:::
+
+#### Latent Variable Modeling with R
+
+::: grid
+::: g-col-4
+![](finchfrench.jpg){fig-alt="Finch and French book" width="100%"}
+:::
+::: g-col-8
+- book title: Latent Variable Modeling with R
+- book authors: W. Holmes Finch and Brian F. French
+- book publisher: [Routledge](https://www.routledge.com/Latent-Variable-Modeling-with-R-1st-Edition/Finch-French/p/book/9780415832458)
+:::
+:::
+
+#### Confirmatory Factor Analysis for Applied Research
+
+::: grid
+::: g-col-4
+![](cfabk2.jpg){fig-alt="Brown book" width="100%"}
+:::
+
+::: g-col-8
+- book title: Confirmatory Factor Analysis for Applied Research
+- book author: Timothy A. Brown
+- book publisher: [Guildford Press](http://www.guilford.com/cgi-bin/cartscript.cgi?page=pr/brown3.htm)
+- R syntax (prepared by Jan Lammertyn, UGent) is available on [GitHub](https://github.com/janlammertyn/lavaan-material/tree/master/brown-cfa)
+:::
+:::
+
+#### Principles and Practice of Structural Equation Modeling (Third Edition)
+
+::: grid
+::: g-col-4
+![](kline.jpg){fig-alt="Kline book" width="100%"}
+:::
+
+::: g-col-8
+- book title: Principles and Practice of Structural Equation Modeling (Third Edition)
+- book author: Rex B. Kline
+- book publisher: [Guildford Press](http://www.guilford.com/cgi-bin/cartscript.cgi?page=pr/kline.htm)
+- R syntax (prepared by Catherine Gunsalus, Kansas University) is available (as a zip file) on [Github](https://github.com/rgroup-crmda/rgroup-crmda/blob/master/documentation/lavaan.Kline.examples.zip?raw=true)
+:::
+:::

@@ -1,0 +1,38 @@
+---
+title: Categorical data
+---
+
+Binary, ordinal and nominal variables are considered categorical (not continuous). It makes a big difference if these categorical variables are exogenous (independent) or endogenous (dependent) in the model.
+
+## Exogenous categorical variables
+
+If you have a binary exogenous covariate (say, gender), all you need to do is to recode it as a dummy (0/1) variable. Just like you would do in a classic regression model. If you have an exogenous ordinal variable, you can use a coding scheme reflecting the order (say, 1,2,3,...) and treat it as any other (numeric) covariate. If you have a nominal categorical variable with $K > 2$ levels, you need to replace it by a set of $K-1$ dummy variables, again, just like you would do in classical regression.
+
+## Endogenous categorical variables
+
+The lavaan 0.5 series can deal with binary and ordinal (but not nominal) endogenous variables. There are two ways to communicate to lavaan that some of the endogenous variables are to be treated as categorical:
+
+1.  declare them as 'ordered' (using the `ordered` function, which is part of base R) in your data.frame before you run the analysis; for example, if you need to declare four variables (say, `item1`, `item2`, `item3`, `item4`) as ordinal in your data.frame (called `Data`), you can use something like:
+
+    ```{r eval=FALSE, tidy=FALSE}
+    Data[,c("item1",
+            "item2",
+            "item3",
+            "item4")] <-
+        lapply(Data[,c("item1",
+                       "item2",
+                       "item3",
+                       "item4")], ordered)
+    ```
+
+2.  use the `ordered` argument when using one of the fitting functions (cfa/sem/growth/lavaan), for example, if you have four binary or ordinal variables (say, `item1`, `item2`, `item3`, `item4`), you can use:
+
+    ```{r eval=FALSE, tidy=FALSE}
+    fit <- cfa(myModel, data = myData,
+               ordered = c("item1","item2",
+                           "item3","item4"))
+    ```
+
+If all the (endogenous) variables are to be treated as categorical, you can use `ordered = TRUE` as a shortcut.
+
+When the `ordered=` argument is used, lavaan will automatically switch to the `WLSMV` estimator: it will use diagonally weighted least squares (`DWLS`) to estimate the model parameters, but it will use the full weight matrix to compute robust standard errors, and a mean- and variance-adjusted test stastistic. Other options are unweighted least squares (ULSMV), or pairwise maximum likelihood (PML). Full information maximum likelihood is currently not supported.

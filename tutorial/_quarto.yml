@@ -1,0 +1,36 @@
+project:
+  type: book
+  output-dir: ..
+
+book:
+  title: "tutorial"
+  author: "Yves Rosseel"
+  chapters:
+    - index.qmd
+    - before.qmd
+    - install.qmd
+    - syntax1.qmd
+    - cfa.qmd
+    - sem.qmd
+    - syntax2.qmd
+    - means.qmd
+    - groups.qmd
+    - growth.qmd
+    - cat.qmd
+    - cov.qmd
+    - est.qmd
+    - mediation.qmd
+    - modindices.qmd
+    - inspect.qmd
+    - multilevel.qmd
+    - efa.qmd
+
+format:
+  pdf:
+    documentclass: scrreport
+    latex-auto-install: true
+    geometry:
+      - top=20mm
+      - left=15mm
+      - right=15mm
+    colorlinks: true

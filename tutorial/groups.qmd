@@ -1,0 +1,131 @@
+---
+title: Multiple groups
+---
+
+```{r echo=FALSE, message=FALSE}
+library(lavaan)
+```
+
+The lavaan package has full support for multiple groups. To request a multiple group analysis, you need to add the name of the group variable in your dataset to the argument `group` in the fitting function. By default, the same model is fitted in all groups. In the following example, we fit the H&S CFA model for the two schools (Pasteur and Grant-White).
+
+```{r tidy=FALSE, comment=""}
+HS.model <- ' visual  =~ x1 + x2 + x3
+              textual =~ x4 + x5 + x6
+              speed   =~ x7 + x8 + x9 '
+
+fit <- cfa(HS.model, 
+           data = HolzingerSwineford1939, 
+           group = "school")
+
+summary(fit)
+```
+
+If you want to fix parameters, or provide starting values, you can use the same pre-multiplication techniques, but the single argument is now replaced by a *vector* of arguments, one for each group. If you use a single element instead of a vector (which is not recommended), that element will be applied for all groups. If you specify a single label, this will generate a warning as this would imply equality constraints across groups. For example:
+
+```{r tidy=FALSE, comment=""}
+HS.model <- ' visual  =~ x1 + 0.5*x2 + c(0.6, 0.8)*x3
+              textual =~ x4 + start(c(1.2, 0.6))*x5 + c(a1, a2)*x6
+              speed   =~ x7 + x8 + x9 '
+```
+
+In the definition of the latent factor `visual`, we have fixed the factor loading of the indicator `x3` to the value '0.6' in the first group, and to the value '0.8' in the second group, while the factor loading of the indicator `x2` is fixed to the value '0.5' in both groups. In the definition of the `textual` factor, two different starting values are provided for the `x5` indicator; one for each group. In addition, we have labeled the factor loading of the `x6` indicator as `a1` in the first group, and `a2` in the second group. It may be tempting to write `a*x6`. But using a single label in a multiple group setting has a double effect: it gives the label `a` to the factor loading of `x6` in both groups, and as a result, those two parameters are now constrained to be equal. Because this may unintended, lavaan will produce a warning message about this. If this is really intended, it is much better to use a vector of labels: `c(a, a)*x6`.
+
+To verify the effects of our modifiers, we refit the model:
+
+```{r tidy=FALSE, comment=""}
+fit <- cfa(HS.model, 
+           data = HolzingerSwineford1939, 
+           group = "school")
+ summary(fit)
+```
+
+## Fixing parameters in some groups, but not all
+
+Sometimes, we wish to fix the value of a parameter in all groups, except for one particular group. In this group, we wish to freely estimate the value of that parameter. The modifier for this parameter is again a vector containing the fixed values for this parameter for each group, but we can use `NA` to force a parameter to be free in one (or more) group(s). Suppose for example we have four groups. We define a latent variable (say `f`) with three indicators. We wish to fix the factor loading of indicator `item2` to 1.0 in all but the second group. We can write something like
+
+```{r tidy=FALSE, comment=""}
+f =~ item1 + c(1,NA,1,1)*item2 + item3
+```
+
+## Constraining a single parameter to be equal across groups
+
+If you want to constrain one or more parameters to be equal across groups, you need to give them the same label. For example, to constrain the factor loading of the indicator `x3` to be equal across (two) groups, you can write:
+
+```{r tidy=FALSE, eval=FALSE}
+HS.model <- ' visual  =~ x1 + x2 + c(v3,v3)*x3
+              textual =~ x4 + x5 + x6
+              speed   =~ x7 + x8 + x9 '
+```
+
+Again, identical labels imply identical parameters, both within and across groups.
+
+## Constraining groups of parameters to be equal across groups
+
+Although providing identical labels is a very flexible method to specify equality constraints for a few parameters, there is a more convenient way to impose equality constraints on a whole set of parameters (for example: all factor loadings, or all intercepts). We call these type of constraints *group equality constraints* and they can be specified by the argument `group.equal` in the fitting function. For example, to constrain (all) the factor loadings to be equal across groups, you can proceed as follows:
+
+```{r tidy=FALSE, comment=""}
+HS.model <- ' visual  =~ x1 + x2 + x3
+              textual =~ x4 + x5 + x6
+              speed   =~ x7 + x8 + x9 '
+fit <- cfa(HS.model, 
+           data = HolzingerSwineford1939, 
+           group = "school",
+           group.equal = c("loadings"))
+summary(fit)
+```
+
+The `.p2.`, `.p3.`, `.p5`, ... labels which appear in the output have been auto-generated to impose the equality constraints. More 'group equality constraints' can be added. In addition to the factor loadings, the following keywords are supported in the `group.equal` argument:
+
+-   `intercepts`: the intercepts of the observed variables
+-   `means`: the intercepts/means of the latent variables
+-   `residuals`: the residual variances of the observed variables
+-   `residual.covariances`: the residual covariances of the observed variables
+-   `lv.variances`: the (residual) variances of the latent variables
+-   `lv.covariances`: the (residual) covariances of the latent varibles
+-   `regressions`: all regression coefficients in the model
+
+If you omit the `group.equal` argument, all parameters are freely estimated in each group (but the model structure is the same).
+
+But what if you want to constrain a whole group of parameters (say all factor loadings and intercepts) across groups, except for one or two parameters that need to stay free in all groups. For this scenario, you can use the argument `group.partial`, containing the names of those parameters that need to remain free. For example:
+
+```{r eval=FALSE, tidy=FALSE}
+fit <- cfa(HS.model, 
+           data = HolzingerSwineford1939, 
+           group = "school",
+           group.equal = c("loadings", "intercepts"),
+           group.partial = c("visual=~x2", "x7~1"))
+```
+
+## Measurement invariance testing
+
+Before we compare, say, the values of latent means across multiple groups, we first need to establish measurement invariance. When data is continuous, testing for measurement invariance involves a fixed sequence of model comparison tests. A typical sequence involves three models:
+
+1.  Model 1: configural invariance. The same factor structure is imposed on all groups.
+
+2.  Model 2: weak invariance. The factor loadings are constrained to be equal across groups.
+
+3.  Model 3: strong invariance. The factor loadings and intercepts are constrained to be equal across groups.
+
+In lavaan, we can proceed as follows:
+
+```{r eval = TRUE, tidy = FALSE, comment = ""}
+HS.model <- ' visual  =~ x1 + x2 + x3
+              textual =~ x4 + x5 + x6
+              speed   =~ x7 + x8 + x9 '
+
+# configural invariance
+fit1 <- cfa(HS.model, data = HolzingerSwineford1939, group = "school")
+
+# weak invariance
+fit2 <- cfa(HS.model, data = HolzingerSwineford1939, group = "school",
+            group.equal = "loadings")
+
+# strong invariance
+fit3 <- cfa(HS.model, data = HolzingerSwineford1939, group = "school",
+            group.equal = c("intercepts", "loadings"))
+
+# model comparison tests
+lavTestLRT(fit1, fit2, fit3)
+```
+
+The `lavTestLRT()` function can be used for model comparison tests. Because we provided three model fits, it will produce two tests: the first test compares the first model versus the second model, while the second test compares the second model versus the third model. Because the first p-value is non-significant, we may conclude that weak invariance (equal factor loadings) is supported in this dataset. However, because the second p-value is significant, strong invariance is not. Therefore, it is unwise to directly compare the values of the latent means across the two groups.
