@@ -1,8 +1,8 @@
 #
-# civr() function for estimation of the causal instrumental variables 
+# civr() function for estimation of the causal instrumental variables
 #        regression (CIVR) model
 #
-# based on: 
+# based on:
 #
 # Maydeu-Olivares (forthcoming). Instrumental variable regression: A mean
 # and covariance structure approach
@@ -52,8 +52,8 @@ civr7 <- function(y = NULL,              # single outcome
     all.data <- cbind(y, X, Z); nobs <- nrow(all.data); nvar <- ncol(all.data)
     all.data <- na.omit(all.data) # listwise deletion!
     if(nrow(all.data) != nobs) {
-        warning("lavaan WARNING: ", 
-                "listwise deletion reduced the sample size from ", nobs, 
+        warning("lavaan WARNING: ",
+                "listwise deletion reduced the sample size from ", nobs,
                 " to ", nrow(all.data))
         nobs <- nrow(all.data)
         attr(all.data, "na.action") <- NULL
@@ -68,7 +68,7 @@ civr7 <- function(y = NULL,              # single outcome
     vech.idx <- lav_matrix_vech_idx(nvar)
     pstar <- (nvar * (nvar + 1)) / 2
 
-    # sample statistics parts 
+    # sample statistics parts
     m.z <- sample.mean[z.idx]
     m.x <- sample.mean[x.idx]
     m.y <- sample.mean[y.idx]
@@ -88,14 +88,14 @@ civr7 <- function(y = NULL,              # single outcome
     ###########################
     psi.zz  <- S.zz
     beta.xz <- t(S.zx) %*% S.zz.inv
-    psi.xx  <- S.xx - beta.xz %*% S.zz %*% t(beta.xz)     
+    psi.xx  <- S.xx - beta.xz %*% S.zz %*% t(beta.xz)
     alpha.z <- m.z
     alpha.x <- m.x - as.numeric(beta.xz %*% m.z)
 
     ###########################
     # stage 2: regress y on x #
     ###########################
-    beta.yx <- t( solve(t(S.zx) %*% S.zz.inv %*% S.zx) %*% 
+    beta.yx <- t( solve(t(S.zx) %*% S.zz.inv %*% S.zx) %*%
                   t(S.zx) %*% S.zz.inv %*% S.zy )
     alpha.y <- m.y - as.numeric(beta.yx %*% m.x)
 
@@ -103,7 +103,7 @@ civr7 <- function(y = NULL,              # single outcome
     # stage 3: residual var/cov y-x #
     #################################
     psi.xy  <- ( S.xy -
-                 beta.xz %*% psi.zz %*% t(beta.xz) %*% t(beta.yx) - 
+                 beta.xz %*% psi.zz %*% t(beta.xz) %*% t(beta.yx) -
                  psi.xx %*% t(beta.yx) )
     psi.yy  <- ( S.yy -
                  beta.yx %*% beta.xz %*% psi.zz %*% t(beta.xz) %*% t(beta.yx) -
@@ -122,7 +122,7 @@ civr7 <- function(y = NULL,              # single outcome
     # model-based Mu
     ALPHA <- matrix( c(alpha.y, alpha.x, alpha.z) )
     Mu <- IB.inv %*% ALPHA
-    
+
 
 
     #############################
@@ -145,7 +145,7 @@ civr7 <- function(y = NULL,              # single outcome
     } else {
         Gamma.ADF <- lav_gamma_model(Y = all.data, Mu = Mu, Sigma = Sigma,
                                      meanstructure = meanstructure)
-        Gamma.ADF.sample <- lav_gamma_model(Y = all.data, Mu = sample.mean, 
+        Gamma.ADF.sample <- lav_gamma_model(Y = all.data, Mu = sample.mean,
                                      Sigma = sample.cov,
                                      meanstructure = meanstructure)
         Gamma.NT <- lavaan:::lav_samplestats_Gamma_NT(COV = Sigma, MEAN = Mu,
@@ -161,7 +161,7 @@ civr7 <- function(y = NULL,              # single outcome
     beta.idx <- c(beta.yx.idx, beta.xz.idx)
 
     KOL.idx <- matrix(1:(nvar * nvar), nvar, nvar, byrow = TRUE)[beta.idx]
-    DX <- (Sigma %x% IB.inv)[, beta.idx, drop = FALSE] + 
+    DX <- (Sigma %x% IB.inv)[, beta.idx, drop = FALSE] +
           (IB.inv %x% Sigma)[, KOL.idx, drop = FALSE]
     DX[, which(beta.idx %in% lav_matrix_diag_idx(nvar))] <- 0
     Delta.beta <- DX[vech.idx, , drop = FALSE]
@@ -207,7 +207,7 @@ civr7 <- function(y = NULL,              # single outcome
 
     ## Delta.1 ##
     Delta.1 <- cbind(
-        Delta.psi[ -seq_len(nvar), match( psi.xx.idx,  psi.idx), drop = FALSE], 
+        Delta.psi[ -seq_len(nvar), match( psi.xx.idx,  psi.idx), drop = FALSE],
         Delta.beta[-seq_len(nvar), match(beta.xz.idx, beta.idx), drop = FALSE],
         Delta.psi[ -seq_len(nvar), match( psi.zz.idx,  psi.idx), drop = FALSE])
     ## Delta.21 ##
@@ -216,7 +216,7 @@ civr7 <- function(y = NULL,              # single outcome
         Delta.beta[ z.idx, match(beta.xz.idx, beta.idx), drop = FALSE],
         Delta.psi[  z.idx, match( psi.zz.idx,  psi.idx), drop = FALSE])
     ## Delta.2 ##
-    Delta.2 <- 
+    Delta.2 <-
         Delta.beta[ z.idx, match(beta.yx.idx, beta.idx), drop = FALSE]
     ## Delta.31 ##
     Delta.31 <- cbind(
@@ -224,10 +224,10 @@ civr7 <- function(y = NULL,              # single outcome
         Delta.beta[ c(1,x.idx), match(beta.xz.idx, beta.idx), drop = FALSE],
         Delta.psi[  c(1,x.idx), match( psi.zz.idx,  psi.idx), drop = FALSE])
     ## Delta.32 ##
-    Delta.32 <- 
+    Delta.32 <-
         Delta.beta[ c(1,x.idx), match(beta.yx.idx, beta.idx), drop = FALSE]
     ## Delta.3 ##
-    Delta.3 <- cbind( 
+    Delta.3 <- cbind(
         Delta.psi[  c(1,x.idx), match( psi.yy.idx,  psi.idx), drop = FALSE],
         Delta.psi[  c(1,x.idx), match( psi.xy.idx,  psi.idx), drop = FALSE] )
 
@@ -239,7 +239,7 @@ civr7 <- function(y = NULL,              # single outcome
             Delta.Mu.psi[  -1L, match( psi.zz.idx,  psi.idx), drop = FALSE] )
         Delta.1 <- rbind(Delta.Mu.1,
                          cbind(matrix(0, nrow(Delta.1), nvar - 1L), Delta.1))
-            
+
         Delta.Mu.21 <- cbind(
             Delta.Mu.alpha[ 1L, -1L, drop = FALSE],
             Delta.Mu.psi[   1L, match( psi.xx.idx,  psi.idx), drop = FALSE],
@@ -269,7 +269,7 @@ civr7 <- function(y = NULL,              # single outcome
         #W2 <- solve(A2)
         W2 <- lav_matrix_bdiag(matrix(1, 1L, 1L), S.zz.inv)
     } else {
-        W2 <- S.zz.inv 
+        W2 <- S.zz.inv
     }
 
 
@@ -305,12 +305,12 @@ civr7 <- function(y = NULL,              # single outcome
     VCOV.NT.2e <- 1/nobs * unname(psi.yy[1,1] * SzxSizzSxz.inv)
 
     SzxSizz <- t(S.zx) %*% S.zz.inv
-    VCOV.ADF.2e <- 1/nobs * unname(SzxSizzSxz.inv %*% SzxSizz %*% Omega2 %*% 
+    VCOV.ADF.2e <- 1/nobs * unname(SzxSizzSxz.inv %*% SzxSizz %*% Omega2 %*%
                                                 t(SzxSizz) %*% SzxSizzSxz.inv)
 
 
     # test statistics
-    T.Sargan <- as.numeric( nobs * 
+    T.Sargan <- as.numeric( nobs *
                     ( t(S.zy - psi.zz %*% t(beta.xz) %*% t(beta.yx)) %*%
                       solve( psi.yy[1,1] * S.zz) %*%
                       (S.zy - psi.zz %*% t(beta.xz) %*% t(beta.yx)) ) )
@@ -370,7 +370,7 @@ civr7 <- function(y = NULL,              # single outcome
 #                 lav_matrix_vech(psi.zz),
 #                 alpha.y, lav_matrix_vec(beta.yx),
 #                 psi.yy, lav_matrix_vec(psi.xy))
-#                 
+#
 #    Delta.x <- function(x) {
 #        idx <- seq_len(nx)
 #        alpha.x <- x[idx]
@@ -448,7 +448,7 @@ civr7 <- function(y = NULL,              # single outcome
 #    C.hat.ADF <- ( Gamma.ADF.inv - Gamma.ADF.inv %*% Delta %*%
 #                        DGD.inv %*% t(Delta) %*% Gamma.ADF.inv)
 #
-   
+
     if(meanstructure) {
         OBS <- c(sample.mean, lav_matrix_vech(sample.cov))
         EST <- c(Mu, lav_matrix_vech(Sigma))
@@ -518,13 +518,13 @@ civr7 <- function(y = NULL,              # single outcome
                 Delta = Delta, Delta.c = Delta.c,
                 T1 = T1, T2 = T2, T3 = T3,
                 beta.yx = beta.yx, beta.xz = beta.xz,
-                psi.yy = psi.yy, psi.xy = psi.xy, psi.xx = psi.xx, 
+                psi.yy = psi.yy, psi.xy = psi.xy, psi.xx = psi.xx,
                 psi.zz = psi.zz,
                 alpha.y = alpha.y, alpha.x = alpha.x, alpha.z = alpha.z,
-                Mu = Mu, Sigma = Sigma, 
-                VCOV.NT = VCOV.NT, 
-                VCOV.NT.2 = VCOV.NT.2, 
-                VCOV.NT.2e = VCOV.NT.2e, 
+                Mu = Mu, Sigma = Sigma,
+                VCOV.NT = VCOV.NT,
+                VCOV.NT.2 = VCOV.NT.2,
+                VCOV.NT.2e = VCOV.NT.2e,
                 VCOV.ADF = VCOV.ADF,
                 VCOV.ADF.2 = VCOV.ADF.2,
                 VCOV.ADF.2s = VCOV.ADF.2s,

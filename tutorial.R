@@ -30,9 +30,9 @@ fit <- cfa(HS.model, data = HolzingerSwineford1939)
 
 
 ## ----cfa, echo=FALSE, dev=c('png','pdf'), dpi=c(100,100), fig.cap="A 3 factor CFA example"--------------------------------------------------------------------------------
-semPaths(fit, layout="tree", curve=1, rotation=4, 
-nCharNodes=0, mar=c(3,20,3,20), 
-border.width=1.0, esize=1.0, edge.color="black", 
+semPaths(fit, layout="tree", curve=1, rotation=4,
+nCharNodes=0, mar=c(3,20,3,20),
+border.width=1.0, esize=1.0, edge.color="black",
 label.scale=FALSE,
 label.cex=1.0,
 residuals=FALSE,
@@ -63,15 +63,15 @@ summary(fit, fit.measures = TRUE)
 ## ----eval=FALSE, tidy=FALSE-----------------------------------------------------------------------------------------------------------------------------------------------
 ## # load the lavaan package (only needed once per session)
 ## library(lavaan)
-## 
+##
 ## # specify the model
 ## HS.model <- ' visual  =~ x1 + x2 + x3
 ##               textual =~ x4 + x5 + x6
 ##               speed   =~ x7 + x8 + x9 '
-## 
+##
 ## # fit the model
 ## fit <- cfa(HS.model, data = HolzingerSwineford1939)
-## 
+##
 ## # display summary output
 ## summary(fit, fit.measures = TRUE)
 
@@ -89,8 +89,8 @@ lower <- '
  -3.839  -3.889  -3.841  -3.625  9.610
 -21.899 -18.831 -21.748 -18.775 35.522 450.288 '
 
-wheaton.cov <- 
-    getCov(lower, names = c("anomia67", "powerless67", 
+wheaton.cov <-
+    getCov(lower, names = c("anomia67", "powerless67",
                             "anomia71", "powerless71",
                             "education", "sei"))
 
@@ -109,8 +109,8 @@ wheaton.model <- '
     anomia67 ~~ anomia71
     powerless67 ~~ powerless71
 '
-fit <- sem(wheaton.model, 
-           sample.cov = wheaton.cov, 
+fit <- sem(wheaton.model,
+           sample.cov = wheaton.cov,
            sample.nobs = 932)
 summary(fit, standardized = TRUE)
 
@@ -122,11 +122,11 @@ library(lavaan)
 ## ----eval=TRUE, tidy=FALSE------------------------------------------------------------------------------------------------------------------------------------------------
 model <- '
     # efa block 1
-    efa("efa1")*f1 + 
+    efa("efa1")*f1 +
     efa("efa1")*f2 =~ x1 + x2 + x3 + x4 + x5 + x6
 
     # efa block 2
-    efa("efa2")*f3 + 
+    efa("efa2")*f3 +
     efa("efa2")*f4 =~ y1 + y2 + y3 + y4 + y5 + y6
 
     # cfa block
@@ -150,8 +150,8 @@ names(ex5_25) = paste0("y",1:12)
 
 ## ----eval=TRUE, tidy=FALSE------------------------------------------------------------------------------------------------------------------------------------------------
 model <- '
-    # efa block 
-    efa("efa1")*f1 + 
+    # efa block
+    efa("efa1")*f1 +
     efa("efa1")*f2 =~ y1 + y2 + y3 + y4 + y5 + y6
 
     # cfa block
@@ -176,8 +176,8 @@ summary(fit)
 
 ## ----eval=TRUE, tidy=FALSE, comment = ""----------------------------------------------------------------------------------------------------------------------------------
 efa.model <- '
-    efa("efa")*f1 + 
-    efa("efa")*f2 + 
+    efa("efa")*f1 +
+    efa("efa")*f2 +
     efa("efa")*f3 =~ x1 + x2 + x3 + x4 + x5 + x6 + x7 + x8 + x9
 '
 fit <- cfa(efa.model, data = HolzingerSwineford1939)
@@ -198,8 +198,8 @@ HS.model <- ' visual =~ x1 + x2 + x3
 
 
 ## ----comment="", tidy=FALSE-----------------------------------------------------------------------------------------------------------------------------------------------
-fit <- cfa(HS.model, 
-           data = HolzingerSwineford1939, 
+fit <- cfa(HS.model,
+           data = HolzingerSwineford1939,
            likelihood = "wishart")
 fit
 
@@ -217,8 +217,8 @@ HS.model <- ' visual  =~ x1 + x2 + x3
               textual =~ x4 + x5 + x6
               speed   =~ x7 + x8 + x9 '
 
-fit <- cfa(HS.model, 
-           data = HolzingerSwineford1939, 
+fit <- cfa(HS.model,
+           data = HolzingerSwineford1939,
            group = "school")
 
 summary(fit)
@@ -231,8 +231,8 @@ HS.model <- ' visual  =~ x1 + 0.5*x2 + c(0.6, 0.8)*x3
 
 
 ## ----tidy=FALSE, comment=""-----------------------------------------------------------------------------------------------------------------------------------------------
-fit <- cfa(HS.model, 
-           data = HolzingerSwineford1939, 
+fit <- cfa(HS.model,
+           data = HolzingerSwineford1939,
            group = "school")
  summary(fit)
 
@@ -251,8 +251,8 @@ f =~ item1 + c(1,NA,1,1)*item2 + item3
 HS.model <- ' visual  =~ x1 + x2 + x3
               textual =~ x4 + x5 + x6
               speed   =~ x7 + x8 + x9 '
-fit <- cfa(HS.model, 
-           data = HolzingerSwineford1939, 
+fit <- cfa(HS.model,
+           data = HolzingerSwineford1939,
            group = "school",
            group.equal = c("loadings"))
 summary(fit)
@@ -425,10 +425,10 @@ HS.model <- ' visual  =~ x1 + x2 + x3
 
 
 ## ----tidy=FALSE, comment=""-----------------------------------------------------------------------------------------------------------------------------------------------
-fit <- cfa(HS.model, 
-           data = HolzingerSwineford1939, 
+fit <- cfa(HS.model,
+           data = HolzingerSwineford1939,
            meanstructure = TRUE)
-summary(fit) 
+summary(fit)
 
 # ============= file:  mediation.qmd =============
 ## ----echo=FALSE, message=FALSE--------------------------------------------------------------------------------------------------------------------------------------------
@@ -469,7 +469,7 @@ modindices(fit, sort = TRUE, maximum.number = 5)
 
 
 ## ----comment="", tidy=FALSE-----------------------------------------------------------------------------------------------------------------------------------------------
-fit <- cfa(HS.model, 
+fit <- cfa(HS.model,
            data = HolzingerSwineford1939)
 mi <- modindices(fit)
 mi[mi$op == "=~",]
@@ -559,7 +559,7 @@ model <- '
 '
 fit <- sem(model, data=PoliticalDemocracy)
 Graph <- semPaths(fit,
-#layout=L, 
+#layout=L,
 layout="tree2",
 nCharNodes=0,
 curve=1,
@@ -667,17 +667,17 @@ summary(fit, standardized = TRUE)
 ##              y1 + y2 ~ f1 + f2 + x1 + x2
 ##                   f1 ~ f2 + f3
 ##                   f2 ~ f3 + x1 + x2
-## 
+##
 ##              # latent variable definitions
 ##                f1 =~ y1 + y2 + y3
 ##                f2 =~ y4 + y5 + y6
 ##                f3 =~ y7 + y8 + y9 + y10
-## 
+##
 ##              # variances and covariances
 ##                y1 ~~ y1
 ##                y1 ~~ y2
 ##                f1 ~~ f2
-## 
+##
 ##              # intercepts
 ##                y1 ~ 1
 ##                f1 ~ 1
@@ -707,7 +707,7 @@ library(lavaan)
 ## HS.model <- ' visual  =~ x1 + x2 + x3
 ##               textual =~ x4 + x5 + x6
 ##               speed   =~ x7 + x8 + x9 '
-## 
+##
 ## fit.HS.ortho <- cfa(HS.model,
 ##                     data = HolzingerSwineford1939,
 ##                     orthogonal = TRUE)
@@ -717,7 +717,7 @@ library(lavaan)
 ## HS.model <- ' visual  =~ x1 + x2 + x3
 ##               textual =~ x4 + x5 + x6
 ##               speed   =~ x7 + x8 + x9 '
-## 
+##
 ## fit <- cfa(HS.model,
 ##            data = HolzingerSwineford1939,
 ##            std.lv = TRUE)
@@ -740,7 +740,7 @@ model <- '
     y6 ~~ y8
 '
 
-fit <- sem(model, 
+fit <- sem(model,
            data = PoliticalDemocracy)
 
 coef(fit)
@@ -766,8 +766,8 @@ coef(fit)
 
 ## ----comment="", tidy=FALSE-----------------------------------------------------------------------------------------------------------------------------------------------
 set.seed(1234)
-Data <- data.frame(y  = rnorm(100), 
-                   x1 = rnorm(100), 
+Data <- data.frame(y  = rnorm(100),
+                   x1 = rnorm(100),
                    x2 = rnorm(100),
                    x3 = rnorm(100))
 model <- ' y ~ b1*x1 + b2*x2 + b3*x3 '
