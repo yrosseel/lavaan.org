@@ -5,7 +5,7 @@ format: html
 
 ### News:
 
-- (pinned): please consider a [donation](http://lavaan.ugent.be/donate.html) for the lavaan project.
+- (pinned): please consider a [donation](https://lavaan.ugent.be/donate.html) for the lavaan project.
 - (12 Sept 2023): the lavaan.org website is now using [quatro](https://quarto.org/) (thanks to Luc De Wilde)
 - (19 July 2023): lavaan version 0.6-16 has been released on [CRAN](https://cran.r-project.org/web/packages/lavaan/). See [Version History](http://lavaan.ugent.be/history/dot6.html) for more information. This is just a maintenance release.
 
