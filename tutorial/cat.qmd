@@ -35,4 +35,4 @@ The lavaan 0.5 series can deal with binary and ordinal (but not nominal) endogen
 
 If all the (endogenous) variables are to be treated as categorical, you can use `ordered = TRUE` as a shortcut.
 
-When the `ordered=` argument is used, lavaan will automatically switch to the `WLSMV` estimator: it will use diagonally weighted least squares (`DWLS`) to estimate the model parameters, but it will use the full weight matrix to compute robust standard errors, and a mean- and variance-adjusted test stastistic. Other options are unweighted least squares (ULSMV), or pairwise maximum likelihood (PML). Full information maximum likelihood is currently not supported.
+When the `ordered=` argument is used, lavaan will automatically switch to the `WLSMV` estimator: it will use diagonally weighted least squares (`DWLS`) to estimate the model parameters, but it will use the full weight matrix to compute robust standard errors, and a mean- and variance-adjusted test statistic. Other options are unweighted least squares (ULSMV), or pairwise maximum likelihood (PML). Full information maximum likelihood is currently not supported.

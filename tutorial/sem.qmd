@@ -88,7 +88,7 @@ model <- '
 '
 ```
 
-In this example, we use three different formula types: latent variabele definitions (using the `=~` operator), regression formulas (using the `~` operator), and (co)variance formulas (using the `~~` operator). The regression formulas are similar to ordinary formulas in R. The (co)variance formulas typically have the following form:
+In this example, we use three different formula types: latent variable definitions (using the `=~` operator), regression formulas (using the `~` operator), and (co)variance formulas (using the `~~` operator). The regression formulas are similar to ordinary formulas in R. The (co)variance formulas typically have the following form:
 
 ```         
 variable ~~ variable

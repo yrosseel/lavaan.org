@@ -23,8 +23,8 @@ If all data is continuous, the default estimator in the lavaan package is maximu
 Many estimators have 'robust' variants, meaning that they provide robust standard errors and a scaled test statistic. For example, for the maximum likelihood estimator, lavaan provides the following robust variants:
 
 -   `"MLM"`: maximum likelihood estimation with robust standard errors and a Satorra-Bentler scaled test statistic. For complete data only.
--   `"MLMVS"`: maximum likelihood estimation with robust standard errors and a mean- and variance adjusted test statistic (aka the Satterthwaite approach). For complete data only.
--   `"MLMV"`: maximum likelihood estimation with robust standard errors and a mean- and variance adjusted test statistic (using a scale-shifted approach). For complete data only.
+-   `"MLMVS"`: maximum likelihood estimation with robust standard errors and a mean- and variance-adjusted test statistic (aka the Satterthwaite approach). For complete data only.
+-   `"MLMV"`: maximum likelihood estimation with robust standard errors and a mean- and variance-adjusted test statistic (using a scale-shifted approach). For complete data only.
 -   `"MLF"`: for maximum likelihood estimation with standard errors based on the first-order derivatives, and a conventional test statistic. For both complete and incomplete data.
 -   `"MLR"`: maximum likelihood estimation with robust (Huber-White) standard errors and a scaled test statistic that is (asymptotically) equal to the Yuan-Bentler test statistic. For both complete and incomplete data.
 
@@ -32,7 +32,7 @@ For the `DWLS` and `ULS` estimators, lavaan also provides 'robust' variants: `WL
 
 ## ML estimation: Wishart versus Normal
 
-If maximum likelihood estimation is used (`"ML"` or any of its robusts variants), the default behavior of lavaan is to base the analysis on the so-called *biased* sample covariance matrix, where the elements are divided by N instead of N-1. This is done internally, and should not be done by the user. In addition, the chi-square statistic is computed by multiplying the minimum function value with a factor N (instead of N-1). If you prefer to use an unbiased covariance matrix, and $N-1$ as the multiplier to compute the chi-square statistic, you need to specify the `likelihood = "wishart"` argument when calling the fitting functions. For example:
+If maximum likelihood estimation is used (`"ML"` or any of its robust variants), the default behavior of lavaan is to base the analysis on the so-called *biased* sample covariance matrix, where the elements are divided by N instead of N-1. This is done internally, and should not be done by the user. In addition, the chi-square statistic is computed by multiplying the minimum function value with a factor N (instead of N-1). If you prefer to use an unbiased covariance matrix, and $N-1$ as the multiplier to compute the chi-square statistic, you need to specify the `likelihood = "wishart"` argument when calling the fitting functions. For example:
 
 ```{r comment="", tidy=FALSE}
 fit <- cfa(HS.model, 
@@ -59,4 +59,4 @@ Robust standard errors can be requested explicitly by using `se = "robust"`. Sim
 
 ## Bootstrapping
 
-There are two ways for using the bootstrap in lavaan. Either you can set `se = "bootstrap"` or `test = "bootstrap"` when fitting the model (and you will get bootstrap standard errors, and/or a bootstrap based p-value respectively), or you can you the `bootstrapLavaan()` function, which needs an already fitted lavaan object. The latter function can be used to 'bootstrap' any statistic (or vector of statistics) that you can extract from a fitted lavaan object.
+There are two ways to use the bootstrap in lavaan. Either you can set `se = "bootstrap"` or `test = "bootstrap"` when fitting the model (and you will get bootstrap standard errors, and/or a bootstrap-based p-value respectively), or you can you the `bootstrapLavaan()` function, which needs an already fitted lavaan object. The latter function can be used to 'bootstrap' any statistic (or vector of statistics) that you can extract from a fitted lavaan object.
