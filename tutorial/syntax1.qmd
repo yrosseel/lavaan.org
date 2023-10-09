@@ -18,7 +18,7 @@ f1 ~ f2 + f3
 f2 ~ f3 + x1 + x2
 ```
 
-If we have latent variables in any of the regression formulas, we must 'define' them by listing their (manifest or latent) indicators. We do this by using the special operator "`=~`", which can be read as *is measured by*. For example, to define the three latent variabels `f1`, `f2` and `f3`, we can use something like:
+If we have latent variables in any of the regression formulas, we must 'define' them by listing their (manifest or latent) indicators. We do this by using the special operator "`=~`", which can be read as *is measured by*. For example, to define the three latent variables `f1`, `f2` and `f3`, we can use something like:
 
 ```         
 f1 =~ y1 + y2 + y3 

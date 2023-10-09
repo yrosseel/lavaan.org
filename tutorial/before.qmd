@@ -8,7 +8,7 @@ Before you start, please read these points carefully:
 
 -   Some important features are NOT available (yet) in lavaan:
 
-    -   multilevel sem with random slopes (this is under developement)
+    -   multilevel sem with random slopes (this is under development)
 
     -   support for variable types other than continuous, binary and ordinal (for example: zero-inflated count data, nominal data, non-Gaussian continuous data); it is unlikely that this will be part of lavaan any time soon, for the simple reason that these variable types need numerical quadrature, and this is too slow to be practical in (pure) R.
 

@@ -30,8 +30,8 @@ Several people have contributed source code to the lavaan project:
 
 Since the release of version 0.3-1, many people have provided valuable feedback, comments and suggestions. Below is an (incomplete) list of people that somehow contributed to the (early) development of lavaan:
 
--   [Anne Boomsma](https://aboomsma.webhosting.rug.nl/), [Joerg Evermann](https://joerg.evermann.ca/) and [Jarrett Byrnes](http://byrneslab.net/) tested the early versions and gave valuabe feedback (2010)
--   [Gerhard Arminger](https://www.researchgate.net/profile/Gerhard-Arminger) provided the MECOSA source code, written in the GAUSS languag (2010)
+-   [Anne Boomsma](https://aboomsma.webhosting.rug.nl/), [Joerg Evermann](https://joerg.evermann.ca/) and [Jarrett Byrnes](http://byrneslab.net/) tested the early versions and gave valuable feedback (2010)
+-   [Gerhard Arminger](https://www.researchgate.net/profile/Gerhard-Arminger) provided the MECOSA source code, written in the GAUSS language (2010)
 -   [Rens van de Schoot](https://www.rensvandeschoot.com/) for allowing me to present at the Mplus user meeting in 2010 and sending Leonard Vanbrabant to Ghent in 2011)
 -   The [Psychoco](https://www.psychoco.org/) organizers (for inviting me in [2011](https://www.psychoco.org/2011/index.html), leading to the [JSS paper](https://doi.org/10.18637/jss.v048.i02) in 2012)
 -   [Michael Hallquist](https://dependlab.unc.edu/) (author of the [MplusAutomation](https://cran.r-project.org/web/packages/MplusAutomation/index.html) package, initially used for testing lavaan)

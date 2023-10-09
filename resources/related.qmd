@@ -31,7 +31,7 @@ A package that can be used for unified visualizations of SEM models
 
 #### semTools
 
-An R package is collecting useful functions for structural equation modeling in a single, easily accessible place.
+An R package that collects useful functions for structural equation modeling in a single, easily accessible place.
 
 -   Author(s): Sunthud Pornprasertmanit, Patrick Miller, Alex Schoemann, Yves Rosseel (and many contributors)
 -   Github: [semTools wiki](https://github.com/simsem/semTools/wiki)
