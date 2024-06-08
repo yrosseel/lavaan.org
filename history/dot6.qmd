@@ -2,6 +2,70 @@
 title: 0.6 series
 ---
 
+##### Version 0.6-18
+
+-   Released on CRAN: 7 June 2024
+-   New features and user-visible changes:
+	-  the new syntax parser is now the default (new features are: multiple
+	modifiers are allowed, as in `y ~ a*start(2)*x1`; spaces are allowed in
+	variables names; if the syntax contains an error, the error message will
+	show the exact location of the problem)
+	-  all lavaan error/warning/note messages have now the same format (and
+	will soon be translated in multiple languages)
+	-  basic support for the analysis of correlation structures using 
+	the `correlation = TRUE` argument, using GLS or WLS
+	-  EFA: target argument in rotation.args can now be a list with 
+	separate matrices per group
+    -  the 'std.nox' argument is no longer used in parameterEstimates()/summary() (but can be set in standardized= instead)
+    -  new argument rstarts= tries multiple random starting values (and keeps
+	the best one)
+	-  estimator = "PML" now supports cluster-robust standard errors (thanks to
+	Haziq Jamil)
+	-  lavPredictY() allows for (ridge) regularization; new function
+	lavPredictY_cv() for finding an optimal lambda value 
+	(thanks to Michael Molina)
+	-  estfun.lavaan (or lavScores) now supports the WLS estimator (thanks to
+	code contributed by Franz Classe)
+	-  lavResiduals(, output = "table") now works with multiple groups
+-   Bugs/glitches discovered after the release:
+    -   (just released)
+
+
+
+##### Version 0.6-17
+
+-   Released on CRAN: 19 December 2023
+-   New features and user-visible changes:
+	-   summary() and parameterEstimates() will now (per default) remove unused
+	rows corresponding to parameters that are automatically added, but still
+	fixed to their default values; add remove.unused = FALSE to get them back
+	-   the default arguments of the sem/cfa/growth function (for example
+	int.ov.free, int.lv.free) can now be changed when using the sem/cfa/growth
+	functions
+	-   requesting estimator = "WLSMV" (or "DWLS") without categorical data now
+	produces a warning
+    -   estimator = "PML" now supports sampling weights (thanks to Haziq Jamil)
+    -   modindices() now warns if equality constraints are involved
+	-   lavPredict() gains a mdist= argument to compute casewise Mahalanobis
+	distances for factor scores and/or casewise residuals
+-   Bugs/glitches discovered after the release:
+	-   EFA: residual covariances EFA factors are estimated but not shown in
+	parameterEstimates()/summary()
+	-   EFA: breaks if the 'head' matrix is singular when rotating to echelon
+	pattern (typically with perfect/artificial data only)
+	-   EFA: random orthogonal matrix should reach the full space (instead of
+	half the space)
+	-   EFA: 'rotated' parameters were not treated as 'free' parameters and
+	were therefore not shown in the outtput of coef(), vcov(), lavTestWald(),
+	lavTestScore() and modificationIndices()
+	-   fixed.x = TRUE did not work when missing = "two.stage"
+	-   SAM: dummy latent variables (eg exogenous covariates) conflicted with
+	latent interactions
+	-   multilevel SEM: did not work with missing-by-design settings (where
+	some pairs of observed variables have zero coverage)
+	-   multilevel SEM: within means of splitted variables were not zero
+	(cosmetic change only!)
+
 ##### Version 0.6-16
 
 -   Released on CRAN: 19 July 2023
@@ -11,7 +75,13 @@ title: 0.6 series
     -   sam() handling of zero diagonal elements in THETA is now identical to what is done in lavPredict()
     -   sam() now uses bounds = "wide.zerovar" when fitting the measurement blocks
 -   Bugs/glitches discovered after the release:
-    -   (just released)
+    -   efa() did not work with sample.cov= (instead of data)
+    -   group.equal= did not work properly in multigroup multilevel models
+    -   summary(fit, rsquare = TRUE) failed in some settings
+    -   lavTestScore() + epc = TRUE produced epc values with the wrong sign if the estimator was not ML
+    -   factor scores for categorical data were not correctly scaled when parameterization = "theta"
+    -   in 0.6-16 only: multilevel results were sometimes slightly off, if some  variables were within-only
+    -   lav_data_update_subset() (used in sam()) did not recompute nobs if empty cases were present in (the subset of) the data
 
 ##### Version 0.6-15
 

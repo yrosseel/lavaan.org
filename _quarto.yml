@@ -7,7 +7,7 @@ website:
 
   page-footer:
       right: "This page is built with [Quarto](https://quarto.org/)."
-      left: "&copy; CC-By the lavaan project, 2010-2023"
+      left: "&copy; CC-By the lavaan project, 2010-2024"
 
   navbar:
     background: secondary

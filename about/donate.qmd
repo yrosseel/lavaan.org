@@ -2,6 +2,8 @@
 title: "Donate"
 ---
 
+<form action="https://actieplatform.ugent.be/en-GB/p/lavaan-project/step-1" method="get" target="_blank"><button class="btn btn-outline-warning" type="submit">DONATE for lavaan</button></form>
+
 ### **lavaan is free**
 
 The lavaan package is free (as in beer) and open-source. We very much plan to
@@ -22,19 +24,50 @@ From 1 July 2023 onwards, it is possible to donate money to the lavaan project.
 The money will go to [Ghent University](https://www.ugent.be/schenken/en), and
 will be used exclusively to hire qualified staff (at the post-doc level) that
 will support the lavaan project.
-
-At the end of the year, we will list all individuals/projects/businesses/organizations that have made a donation (unless they opt out) on this website.
-
-### **What are the donations for?**
-
-Our initial goal is to raise about 120,000 euro (the gross salary of a post-doc in Flanders) to hire a qualified person for 1 full year (hopefully, starting early 2024).
-
-This person will assist the main developer to:
+Our initial goal is to raise about 120,000 euro (the gross salary of a post-doc in Flanders) to hire a qualified person for 1 full year (hopefully, starting in 2024). This person will assist the main developer to:
 
 1.  create high-quality documentation for users,
 2.  create detailed technical documentation (matching the code), and
 3.  create a public cloud-based quality-testing platform to ensure the correctness of the lavaan output (in particular after a new update).
-4.  add new features to lavaan
+4.  add new features to lavaan (see plans below)
+
+### **Plans for lavaan**
+
+Our long-term goals are:
+
+- greater functionality
+- to get (most of) the features of LISREL/Mplus/gllamm in lavaan (and more)
+- to improve the user-facing documentation
+- to improve the internal technical codebase documentation
+- having a cloud-based test suite to ensure lavaan is as accurate as possible
+- to grow an open source community of contributors
+- faster model estimation
+- more modularity and better connectivity with other software
+- other UX improvements
+
+In the medium term:
+
+- better support for models with NO latent variables
+- full support for non-iterative estimators, including James-Stein type 
+shrinkage estimators
+- outlier-robust estimation approaches
+- improved small sample inference
+- multilevel SEM with categorical data (using adaptive quadrature)
+- support for discrete latent variables (aka mixture modeling, latent class analysis)
+
+More concretely, here are some future updates you can expect in the 0.6 series:
+
+- EFA for many groups (including alignment procedures and rotation methods
+that seek agreement across groups)
+- two-level SEM with random slopes
+- random starts
+- faster EM estimation for multilevel SEM
+- further extensions of the structural after measurement (SAM) approach (including support for latent interactions)
+
+If any of these sound like things you'd be interested in helping out with, head
+to the [Github repository](https://github.com/yrosseel/lavaan), and create a
+pull request or a new issue. If you just want to see them in lavaan, click on
+the donate button below.
 
 ### **How to make a donation**
 
