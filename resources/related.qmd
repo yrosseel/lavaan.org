@@ -6,6 +6,15 @@ title: Related Projects
 
 On this page, we provide a list of external projects that are related to the lavaan project. The projects are presented in alphabetical order. Please let me know if you would like your project to be added here.
 
+#### lavaangui
+
+A graphical user interface for lavaan, allowing models to be specified by drawing path diagrams and visualizing lavaan models through interactive path diagrams.
+
+-   Author(s): Julian D. Karch
+-   Website: <https://lavaangui.org>
+-   CRAN: [lavaangui](https://cran.rstudio.com/web/packages/lavaangui/index.html)
+-   Github: [lavaangui development](https://github.com/karchjd/lavaangui)
+
 #### lavaan.survey
 
 A package to take into account survey weights, clustering, strata, and finite sampling corrections in structural equation modeling analyses in R. Wrapper around packages lavaan and survey.
