@@ -2,6 +2,31 @@
 title: 0.6 series
 ---
 
+##### Version 0.6-19
+
+-   Released on CRAN: 26 September 2024
+-   New features and user-visible changes:
+	- all 'simple' inequality constraints (like x > 0 or x < 1) where 
+      'x' is a parameter
+      are converted to lower()/upper() statements when the syntax is parsed;
+      this avoids constrained optimization, because simple bounds can be 
+      handled very efficiently by the (default) nlminb() optimizer
+    - lower()/upper() bounds that are 'active' (i.e, estimated at the bound)
+      are now treated as proper inequality constraints while computing the
+      standard errors (for the unbounded/non-active parameters)
+    - lavPredict() gains rel= (for factor reliability) argument; but it is
+      more convenient to request lavInspect(fit, "fs.reliability") or
+      lavInspect(fit, "fs.determinacy") (which is the square-root of the
+      reliabilities)
+    - sam() now also handles interaction terms involving exogenous observed
+      covariates
+    - a check is now in place to see if an observed categorical variable
+      is also a mediator in the model; in that case, parameterization = "delta"
+      does not work correctly, and one should switch to parameterization = "theta" (and this is noted in a warning message)
+-   Bugs/glitches discovered after the release:
+    -   (just released)
+
+
 ##### Version 0.6-18
 
 -   Released on CRAN: 7 June 2024
@@ -28,9 +53,19 @@ title: 0.6 series
 	code contributed by Franz Classe)
 	-  lavResiduals(, output = "table") now works with multiple groups
 -   Bugs/glitches discovered after the release:
-    -   (just released)
-
-
+    - twolevel: some of the h1 (saturated) means at the between level were 
+      wrong; but this was only post-estimation (to ensure the within level means
+      of splitted variables are zero), and only in 0.6-18
+    - twolevel + missing (fiml): did not work correctly when the cluster ids
+      were not in the right order (see github issue 379)
+    - twolevel + multigroup: group weighting was applied twice, while only
+      once was enough (this could lead to differences in results if the 
+      group sizes were very different)
+    - optim.method = "bfgs" did not work any longer 
+    - robust fit measures (rmsea/cfi/tli) did not work in the presence
+      of categorical variables, if rotation was used (in EFA or ESEM)
+    - sam() + method = "global" did not work with categorical data (unless
+      the estimator for the structural part was set to DWLS manually)
 
 ##### Version 0.6-17
 

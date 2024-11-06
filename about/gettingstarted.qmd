@@ -27,6 +27,6 @@ If you can see the output, everything is set up and ready.
 
 Now that you have installed lavaan, you can:
 
--   read the lavaan tutorial; either [online](/tutorial.html) or as a [PDF](/tutorial.pdf)
--   read the [lavaan paper](https://www.jstatsoft.org/v48/i02/)
--   have a look at the teaching materials, code examples and more at the [Resources](/resources.html) page.
+-   read the lavaan tutorial; either [online](/tutorial/index.html) or as a [PDF](/tutorial.pdf)
+-   read the [lavaan paper](https://doi.org/10.18637/jss.v048.i02)
+-   have a look at the teaching materials, code examples and more at the [Resources](/resources/index.html) page.

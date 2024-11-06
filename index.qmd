@@ -9,10 +9,16 @@ format: html
 Click [here](https://lavaan.ugent.be/about/donate.html) to read more, or
 use the donate button below to donate to our efforts:
 <form action="https://actieplatform.ugent.be/en-GB/p/lavaan-project/step-1" method="get" target="_blank"><button class="btn btn-outline-warning" type="submit">DONATE for lavaan</button></form>
-- (7 June 2024):  lavaan version 0.6-18 has been released on
+
+- (26 September 2024): lavaan version 0.6-19 has been released on
 [CRAN](https://cran.r-project.org/web/packages/lavaan/). See [Version
 History](http://lavaan.ugent.be/history/dot6.html) for more information.
-- (25 March 2024): slides for my presentation ('The SAM approach to SEM') at the joint quantitative brownbag (JQBB) speaker series can be found [here](https://users.ugent.be/~yrosseel/lavaan/slides/rosseel_jqbb2024.pdf); the corresponding R can found [here](https://users.ugent.be/~yrosseel/lavaan/slides/rosseel_jqbb2024.R).
+- (1 Aug 2024): the lavaan discussion group is back online.
+- (15 July 2024): the lavaan discussion group was taken offline (by google) 
+after a spam attack.
+- (7 June 2024): lavaan version 0.6-18 has been released on
+[CRAN](https://cran.r-project.org/web/packages/lavaan/). See [Version
+History](http://lavaan.ugent.be/history/dot6.html) for more information.
 
 ### What is lavaan?
 
