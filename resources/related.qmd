@@ -23,6 +23,15 @@ A package to take into account survey weights, clustering, strata, and finite sa
 -   Website: <http://wp.daob.org/software/>
 -   CRAN: [lavaan.survey](http://cran.r-project.org/web/packages/lavaan.survey/index.html)
 
+#### modsem
+
+A package for estimating latent interaction and quadratic effects in structural equation models.
+
+-   Author(s): Kjell S Slupphaug
+-   Website: <https://modsem.org>
+-   CRAN: [modsem](https://CRAN.R-project.org/package=modsem)
+-   Github: [modsem development](https://github.com/kss2k/modsem)
+
 #### Onyx
 
 A graphical interface for Structural Equation Modeling.
