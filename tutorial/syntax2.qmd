@@ -119,13 +119,24 @@ It is important that labels start with a letter (a-zA-Z), and certainly not with
 
 We have seen the use of the pre-multiplication mechanism (using the `*` operator) a number of times: to fix a parameter, to provide a starting value, and to label a parameter. We refer to these operations as *modifiers*, because they modify some properties of certain model parameters. More modifiers will be introduced later.
 
-Each term on the right-hand side in a formula can have one modifier only. If you want to specify more modifiers for the same parameter, you need to list the term multiple times in the same formula. For example:
+If you want to specify more modifiers for the same parameter, there are two
+approaches. In the first approach (since 0.6-19), you can combine multiple
+modifiers for the same term:
+
+```
+f =~ y1 + y2 + myLabel*start(0.5)*y3 + y4
+```
+
+In the second (older) approach, you need to list the
+term multiple times in the same formula. For example:
 
 ```         
 f =~ y1 + y2 + myLabel*y3 + start(0.5)*y3 + y4
 ```
 
-The indicator `y3` was listed twice, each time with a different modifier. The parser will accumulate all the different modifiers, but still treat `y3` as a single indicator.
+In this formula, the indicator `y3` was listed twice, each time with a
+different modifier. The parser will accumulate all the different modifiers, but
+still treat `y3` as a single indicator.
 
 ## Simple equality constraints
 

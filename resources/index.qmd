@@ -14,6 +14,8 @@ material related to lavaan
 - the [Teaching Materials](/resources/teaching.html) section contains slides
 in PDF, R code, LaTeX and Powerpoint files that have been used in a teaching context
 
+- the [Related Projects](/resources/related.html) section contains some other projects that are related or based on lavaan
+
 - the [Code Snippets](/resources/code.html) section contains code snippets
 using or based on lavaan
 

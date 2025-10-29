@@ -6,6 +6,27 @@ title: Related Projects
 
 On this page, we provide a list of external projects that are related to the lavaan project. The projects are presented in alphabetical order. Please let me know if you would like your project to be added here.
 
+#### blavaan
+
+blavaan is a free, open source R package for Bayesian latent variable analysis.
+It relies on JAGS and Stan to estimate models via MCMC.
+
+-   Author(s): Ed Merkle, Yves Rosseel, Ben Goodrich (and other contributors)
+-   Website: <http://ecmerkle.github.io/blavaan/index.html>
+-   CRAN: [blavaan](https://cran.rstudio.com/web/packages/blavaan/index.html)
+-   Github: [blavaan development](https://github.com/ecmerkle/blavaan/)
+
+#### dySEM
+
+dySEM helps to automate the scripting (for lavaan) and outputting of latent
+variable versions of common dyadic data models.
+
+-   Author(s): John Sakaluk, Omar Camanto (and other contributors)
+-   Website: <https://jsakaluk.github.io/dySEM/>
+-   CRAN: [dySEM](https://CRAN.R-project.org/package=dySEM)
+-   Github: [dySEM development](https://github.com/jsakaluk/dySEM)
+
+
 #### lavaangui
 
 A graphical user interface for lavaan, allowing models to be specified by drawing path diagrams and visualizing lavaan models through interactive path diagrams.
@@ -15,13 +36,14 @@ A graphical user interface for lavaan, allowing models to be specified by drawin
 -   CRAN: [lavaangui](https://cran.rstudio.com/web/packages/lavaangui/index.html)
 -   Github: [lavaangui development](https://github.com/karchjd/lavaangui)
 
-#### lavaan.survey
+#### modsem
 
-A package to take into account survey weights, clustering, strata, and finite sampling corrections in structural equation modeling analyses in R. Wrapper around packages lavaan and survey.
+A package for estimating latent interaction and quadratic effects in structural equation models.
 
--   Author(s): Daniel Oberski
--   Website: <http://wp.daob.org/software/>
--   CRAN: [lavaan.survey](http://cran.r-project.org/web/packages/lavaan.survey/index.html)
+-   Author(s): Kjell S Slupphaug
+-   Website: <https://modsem.org>
+-   CRAN: [modsem](https://CRAN.R-project.org/package=modsem)
+-   Github: [modsem development](https://github.com/kss2k/modsem)
 
 #### Onyx
 
@@ -38,11 +60,19 @@ A package that can be used for unified visualizations of SEM models
 -   Github: [semPlot development](https://github.com/SachaEpskamp/semPlot)
 -   CRAN: [semPlot](http://cran.r-project.org/web/packages/semPlot/index.html)
 
+#### semPower
+
+semPower is an R-package that provides several functions to perform a-priori, compromise, and post-hoc power analyses for structural equation models (SEM)
+
+-   Author(s): Morten Moshagen, Martina Bader
+-   Github: [semPower development](https://github.com/moshagen/semPower/)
+-   CRAN: [semPower](http://cran.r-project.org/web/packages/semPower/index.html)
+
 #### semTools
 
 An R package that collects useful functions for structural equation modeling in a single, easily accessible place.
 
--   Author(s): Sunthud Pornprasertmanit, Patrick Miller, Alex Schoemann, Yves Rosseel (and many contributors)
+-   Author(s): Terrence Jorgensen, Sunthud Pornprasertmanit, Patrick Miller, Alex Schoemann, Yves Rosseel (and many contributors)
 -   Github: [semTools wiki](https://github.com/simsem/semTools/wiki)
 -   CRAN: [semTools](http://cran.r-project.org/web/packages/semTools/index.html)
 

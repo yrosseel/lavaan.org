@@ -2,6 +2,47 @@
 title: 0.6 series
 ---
 
+##### Version 0.6-20
+
+-   Released on CRAN: 21 September 2025
+-   New features and user-visible changes:
+    - new implementation of composite variables (using the "<~" operator);
+      see [this paper](https://arxiv.org/abs/2508.06112); however, you need
+      to use the following argument: optim.gradient = "numerical". To
+      revert back to the old implementation, use composites = FALSE.
+    - most other changes in this release are related to the sam() function
+    - sam: df are not correctly computed when std.lv = TRUE
+    - sam now accepts se = "bootstrap"; bootstrapLavaan() now works
+      with sam() objects
+    - sam: local sam now supports se = "local"
+    - sam: local sam now supports higher order factors
+    - sam: new method sam.method = "cfsr": factor score regression with
+      correlation-preserving factor scores
+    - sam: better support for conditional.x = TRUE
+    - sam: added se = "twostep.robust" (now the default for categorical data,
+      if local sam is used)
+    - sam: se = "local" now also works in the presence of latent interactions
+    - sam: if se = "local" is used, test = "satorra-bentler" in step 2, 
+      accounting for the uncertainty in step 1
+    - sam: mm.list() is now automatically constructed if measurement blocks
+      are linked (due to cross-loadings, correlated errors, but not yet 
+      equality constraints)
+    - lavaanList + iseed now also works with parallel = "multicore"
+    - efa() now supports sampling weights
+    - parameterization = "delta" now handles recursive models with observed 
+      mediators (both for categorical, as for correlation structures)
+    - lavaanList-summary() method gains simulate.args= argument
+    - lavTestLRT: RMSEA now also available if a robust test statistics are used
+    - multiple group + categorical data: if group.equal = "thresholds", lavaan
+      now frees the intercepts in all but the first group (following the
+      Wu and Estabrook procedure)
+    - rotation = "target" now implies rotation = "pst" (only fixing the zero
+      elements); rotation = "target.strict" takes the values in the target
+      matrix literally
+-   Bugs/glitches discovered after the release:
+    -   (just released)
+
+
 ##### Version 0.6-19
 
 -   Released on CRAN: 26 September 2024
@@ -24,8 +65,19 @@ title: 0.6 series
       is also a mediator in the model; in that case, parameterization = "delta"
       does not work correctly, and one should switch to parameterization = "theta" (and this is noted in a warning message)
 -   Bugs/glitches discovered after the release:
-    -   (just released)
-
+    - local sam: degrees of freedom in step 2 were not correctly computed when 
+      std.lv = TRUE
+    - robust CFI/RMSEA in the categorical setting gave NA when equality
+      constraints are imposed on the thresholds
+    - sam() did not work when sample statistics are provided (instead of
+      raw data)
+    - rotation.args$target matrix could not exceed 1000 elements
+    - modindices() produced epc values with the wrong sign, (only) if the 
+      estimator was not ML
+    - the bounds= and rstarts= arguments could not be used together
+    - PML + missing = "doubly.robust" did not work (anymore)
+    - missing data: if coverage is zero for a pair of variables, the EM 
+      algorithm still estimated this value to a nonzero value
 
 ##### Version 0.6-18
 
@@ -289,7 +341,7 @@ title: 0.6 series
     -   parallel= option did not work in boostrapLavaan()
     -   standardizedSolution + type = "std.lv" failed
     -   missing = "ml" (or "fiml") + sampling.weights failed
-    -   lavaan:::fsr() failed, unless missing = "listwise" was given explicitly
+    -   `lavaan:::fsr()` failed, unless missing = "listwise" was given explicitly
 
 ##### Version 0.6-5
 
@@ -326,7 +378,7 @@ title: 0.6 series
     -   group.equal now also accepts "composite.loadings" when the "\<\~" operator is used
     -   parameterEstimates() gains a remove.nonfree= argument
     -   initial (but still experimental and undocumented) support for rotation, EFA, and ESEM (contact me if you wish to test this)
-    -   initial (but still experimental and undocumented) support for the \`Structural After Measurement' (SAM) approach (see the new lavaan:::sam() function; contact me if you wish to test this)
+    -   initial (but still experimental and undocumented) support for the \`Structural After Measurement' (SAM) approach (see the new `lavaan:::sam()` function; contact me if you wish to test this)
 -   Known issues:
     -   same as 0.6-1 (although many long standing github issues have been resolved)
 -   Bugs/glitches discovered after the release:
