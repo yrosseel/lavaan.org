@@ -8,7 +8,7 @@ The lavaan package is available on CRAN. Therefore, to install lavaan, simply st
 install.packages("lavaan", dependencies = TRUE)
 ```
 
-You can check if the installation was succesful by typing
+You can check if the installation was successful by typing
 
 ```{r eval=TRUE, comment=""}
 library(lavaan)

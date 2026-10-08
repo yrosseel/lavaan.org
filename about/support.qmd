@@ -8,7 +8,7 @@ If you are looking for help, please do not email me directly. Please use the lav
 
 ### **lavaan discussion group**
 
-If you have questions about the use of lavaan, or if you would like to discuss various aspects about the lavaan package, please join the the lavaan discussion group:
+If you have questions about the use of lavaan, or if you would like to discuss various aspects about the lavaan package, please join the lavaan discussion group:
 
 <https://groups.google.com/d/forum/lavaan>
 

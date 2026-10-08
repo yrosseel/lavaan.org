@@ -10,7 +10,7 @@ If you have a binary exogenous covariate (say, gender), all you need to do is to
 
 ## Endogenous categorical variables
 
-The lavaan 0.5 series can deal with binary and ordinal (but not nominal) endogenous variables. There are two ways to communicate to lavaan that some of the endogenous variables are to be treated as categorical:
+lavaan can deal with binary and ordinal (but not nominal) endogenous variables. There are two ways to communicate to lavaan that some of the endogenous variables are to be treated as categorical:
 
 1.  declare them as 'ordered' (using the `ordered` function, which is part of base R) in your data.frame before you run the analysis; for example, if you need to declare four variables (say, `item1`, `item2`, `item3`, `item4`) as ordinal in your data.frame (called `Data`), you can use something like:
 

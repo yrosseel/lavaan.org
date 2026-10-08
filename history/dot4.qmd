@@ -53,8 +53,7 @@ title: 0.4 series
     -   simulateData() to generate data starting from a lavaan model syntax
     -   getCov() function to easily read in the lower triangular elements of a covariance matrix
     -   new operator ":" to allow for different models for different groups
-    -   there is no need to use the 'label()' and 'equal()' modifiers anymore; in multiple groups, labels can
-    -   be provided as follows: c(a1,a2,a3,a4)\*x1 (no quotes needed!)
+    -   there is no need to use the 'label()' and 'equal()' modifiers anymore; in multiple groups, labels can be provided as follows: c(a1,a2,a3,a4)\*x1 (no quotes needed!)
     -   models with only covariances and/or means (i.e. no "\~" or "=\~" operators) are now supported
 -   Bugs/glitches discovered after the release:
     -   bootstrapLavaan() with type="parametric" only produces an error (in the CRAN version)
@@ -116,10 +115,10 @@ title: 0.4 series
 
 ##### Version 0.4-7
 
--   Released on CRAN: 21 Februari 2011
+-   Released on CRAN: 21 February 2011
 -   New features/changes:
     -   completely rewritten codebase (much smaller, more modular and much faster)
-    -   improved parsing mechansism using the new function lavaanify()
+    -   improved parsing mechanism using the new function lavaanify()
     -   improved model syntax (multiple modifiers, multiple lhs elements, and more)
     -   MLM results are now identical to Mplus (except for fixed.x covariates)
     -   added MLF and MLR estimators
@@ -144,6 +143,5 @@ title: 0.4 series
     -   rsquare labels in the summary output are sometimes in the wrong order
     -   internal function 'vnames' (called by function lavaanNames) with type 'lv.x' or 'lv.y' does not (always) return the names of the variables in the same order as for type 'lv'
     -   function measurementInvariance(): the group.partial argument produces an error
-    -   if the data contains cases where all variables are missing, these cases are silently removed from the data, but
-    -   the total number of observations is not adjusted
+    -   if the data contains cases where all variables are missing, these cases are silently removed from the data, but the total number of observations is not adjusted
     -   the logLik function returns a 'df' attribute (to be used in the AIC() function); this should be the number of free parameters, not (as in 0.4-7) the degrees of freedom of the model

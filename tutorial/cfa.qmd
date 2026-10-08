@@ -71,13 +71,13 @@ fit <- cfa(HS.model, data = HolzingerSwineford1939)
 The `cfa()` function is a dedicated function for fitting confirmatory factor analysis models. The first argument is the user-specified model. The second argument is the dataset that contains the observed variables. Once the model has been fitted, the `summary()` function provides a nice summary of the fitted model:
 
 ```{r, eval=FALSE}
-summary(fit, fit.measures = TRUE)
+summary(fit, fit_measures = TRUE)
 ```
 
-The output should look familiar to users of other SEM software. If you find it confusing or esthetically unpleasing, please let us know, and we will try to improve it.
+The output should look familiar to users of other SEM software. If you find it confusing or aesthetically displeasing, please let us know, and we will try to improve it.
 
 ```{r, echo=FALSE, comment=""}
-summary(fit, fit.measures = TRUE)
+summary(fit, fit_measures = TRUE)
 ```
 
 The output consists of three parts. The first nine lines are called *the header*. The header contains the following information:
@@ -90,7 +90,7 @@ The output consists of three parts. The first nine lines are called *the header*
 -   the number of observations that were effectively used in the analysis (here: `301`)
 -   a section called `Model Test User Model:` which provides a test statistic, degrees of freedom, and a p-value for the model that was specified by the user.
 
-The next section contains additional fit measures, and is only shown because we use the optional argument `fit.measures = TRUE`. It starts with the line `Model Test Baseline Model:` and ends with the value for the `SRMR`. The last section contains the parameter estimates. It starts with (technical) information about the method that was used to compute the standard errors. (Most users can safely ignore this information). Then, it tabulates all free (and fixed) parameters that were included in the model. Typically, first the latent variables are shown, followed by covariances and (residual) variances. The first column (`Estimate`) contains the (estimated or fixed) parameter value for each model parameter; the second column (`Std.err`) contains the standard error for each estimated parameter; the third column (`Z-value`) contains the Wald statistic (which is simply obtained by dividing the parameter value by its standard error), and the last column (`P(>|z|)`) contains the p-value for testing the null hypothesis that the parameter value equals zero in the population.
+The next section contains additional fit measures, and is only shown because we use the optional argument `fit_measures = TRUE`. It starts with the line `Model Test Baseline Model:` and ends with the value for the `SRMR`. The last section contains the parameter estimates. It starts with (technical) information about the method that was used to compute the standard errors. (Most users can safely ignore this information). Then, it tabulates all free (and fixed) parameters that were included in the model. Typically, first the latent variables are shown, followed by covariances and (residual) variances. The first column (`Estimate`) contains the (estimated or fixed) parameter value for each model parameter; the second column (`Std.err`) contains the standard error for each estimated parameter; the third column (`Z-value`) contains the Wald statistic (which is simply obtained by dividing the parameter value by its standard error), and the last column (`P(>|z|)`) contains the p-value for testing the null hypothesis that the parameter value equals zero in the population.
 
 Note that in the `Variances:` section, there is a dot before the observed variables' names. This is because they are dependent (or endogenous) variables (predicted by the latent variables), and therefore, the value for the variance that is printed in the output is an estimate of the residual variance: the left-over variance that is not explained by the predictor(s). By contrast, there is no dot before the latent variable names, because they are exogenous variables in this model (there are no single-headed arrows pointing to them). The values for the variances here are the estimated *total* variances of the latent variables.
 
@@ -109,7 +109,7 @@ HS.model <- ' visual  =~ x1 + x2 + x3
 fit <- cfa(HS.model, data = HolzingerSwineford1939)
 
 # display summary output
-summary(fit, fit.measures = TRUE)
+summary(fit, fit_measures = TRUE)
 ```
 
 Simply copying this code and pasting it in R should work. The syntax illustrates the typical workflow in the lavaan package:

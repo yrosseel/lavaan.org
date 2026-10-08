@@ -2,6 +2,67 @@
 title: 0.6 series
 ---
 
+##### Version 0.6-21
+-   Released on CRAN: 21 December 2025
+-   New features and user-visible changes:
+    - this is mostly a maintenance release
+    - many internal functions have been renamed (so they have a lav_ prefix);
+      for example, the old name 'computeSigmaHat' is now named 'lav_model_sigma'
+    - several public functions have been renamed: getCov -> lav_getcov, 
+      char2num -> lav_char2num, cor2cov -> lav_cor2cov, 
+      mplus2lavaan.modelSyntax -> lav_mplus_syntax_model, 
+      mplus2lavaan -> lav_mplus_lavaan, inspectSampleCov -> lavInspectSampleCov;
+      the old names are still available, but are flagged as deprecated
+    - the mimic= argument is now fully handled by options and no longer 
+      internally (see "lav_options_mimic.R")
+    - new utility function lav_plot() helps to create tikz or svg diagrams
+      based on lavaan model syntax
+    - if estimator = "ULS" (not "ULSM" or "ULSMV") or estimator = "DWLS"
+      (not "WLSM" or "WLSMV") and the data is continuous, the default test is
+      now "browne.residual.nt", and the default standard errors "robust.sem.nt"
+    - lav_model_sigma() is now somewhat faster, because it relies on chol() (and
+      no longer eigen()) to decide if a model-implied (co)variance matrix
+      is positive definite (thanks to Julian Karch)
+-   Bugs/glitches discovered after the release:
+    -   lavaan crashed at start-up on some systems (e.g. Apple Silicon
+        macOS) where parallel::detectCores() returns NA (github issue 594)
+    -   efa() with rotation = "none" and a single factor produced incorrect
+        CFI/RMSEA values (github issue 572)
+    -   the analytic gradient for multilevel FIML was wrong when the data
+        contained a case with all values missing (github issue 580)
+    -   lavPredict() failed ("subscript out of bounds") for multilevel models
+        when the data contained haven-labelled variables (haven >= 2.0)
+    -   lavPredict() crashed when computing factor scores for models with
+        conditional.x = TRUE
+    -   lavPredict(method = "bartlett") returned zero factor scores for the
+        higher-order factors in higher-order factor models
+    -   with categorical data and effect.coding = TRUE (thresholds fixed), the
+        analytic threshold Jacobian was wrong, which could lead to a
+        non-positive-definite vcov and (sometimes) optimizer failure
+    -   estimator = "DWLS" or "ULS" combined with missing = "two.stage" (or
+        "robust.two.stage") crashed with a "non-conformable arguments" error
+    -   estimator = "ULS" (continuous data) failed with a cryptic error when
+        only sample statistics (sample.cov=) were provided, because the
+        normal-theory Gamma needed for the (default) robust standard
+        errors/test was not computed
+    -   lavTestLRT() crashed when comparing two PML models carrying a
+        mean.var.adjusted test; estimator = "PML" + cluster= also crashed
+        while computing the adjusted PLRT
+    -   lavInspect()/lavTech() raised raw R errors (instead of clean results)
+        for several what= arguments, e.g. "average.cluster.size" on a
+        non-clustered fit, and "th"/"wls.obs"/"vy"/"dx.all" for two-level,
+        categorical or conditional.x models
+    -   two-level models silently ignored the sampling.weights= argument (they
+        are not supported for two-level models); lavaan now stops with an
+        informative error
+    -   vcov(fit, type = "user") and lavInspect(fit, "vcov.def.joint") (and
+        their standardized variants) labeled the free-parameter block with
+        meaningless names instead of the coef() labels (github issue 504)
+    -   rotation = "cf": a user-supplied rotation.args$cf_gamma was silently
+        ignored (the criterion always ran with the orthomax default)
+    -   logLik() (and hence AIC()/BIC()) crashed when the model was fitted with
+        loglik = FALSE; they now return NA
+
 ##### Version 0.6-20
 
 -   Released on CRAN: 21 September 2025
@@ -40,8 +101,19 @@ title: 0.6 series
       elements); rotation = "target.strict" takes the values in the target
       matrix literally
 -   Bugs/glitches discovered after the release:
-    -   (just released)
-
+    -  lavTestWald() did not remove redundant constraints
+    -  defined parameters (using the ":=" operator) needed to be in the
+       right order, if the depend on each other
+    -  robust CFI/RMSEA values in the presence of missing data were not
+       correct if bounded estimation was used, and some estimated variances 
+       were zero (or negative) (see github issue 443)
+    -  lavPredictY() did not work (anymore) if newdata contained a single
+       observation
+    -  lav_cfa_bentler1982 and lav_cfa_guttman1952 did not handle 
+       crossloadings correctly
+    -  lavaan.mi did not work in combination with efa()
+    -  estimator = "PML" failed if starting values for thresholds were not
+       increasing (github issue 474)
 
 ##### Version 0.6-19
 
@@ -143,7 +215,7 @@ title: 0.6 series
 	-   EFA: random orthogonal matrix should reach the full space (instead of
 	half the space)
 	-   EFA: 'rotated' parameters were not treated as 'free' parameters and
-	were therefore not shown in the outtput of coef(), vcov(), lavTestWald(),
+	were therefore not shown in the output of coef(), vcov(), lavTestWald(),
 	lavTestScore() and modificationIndices()
 	-   fixed.x = TRUE did not work when missing = "two.stage"
 	-   SAM: dummy latent variables (eg exogenous covariates) conflicted with
@@ -204,7 +276,7 @@ title: 0.6 series
 
 -   Released on CRAN: 9 Jan 2023
 -   New features and user-visible changes:
-    -   a new function efa() allows for classic (single-group) explorary factor analysis
+    -   a new function efa() allows for classic (single-group) exploratory factor analysis
     -   a new function lavPredictY() allows for the prediction of 'y' values based on 'x' values (see ?lavPredictY for a reference)
     -   a new function lavTest() allows to extract (or compute) one or several test statistics based on an already fitted object
     -   new test statistics: browne.residual.adf and browne.residual.nt
@@ -223,7 +295,7 @@ title: 0.6 series
         3)  equality constraints (across groups) were involved. A typical setting are measurement invariance tests when data is categorical. In those settings, the resulting test statistic was slightly off (typically \<5%). Many thanks to Steffen Gronneberg, Njal Foldnes and Jonas Moss for reporting this.
 -   Bugs/glitches discovered after the release:
     -   an error is produced when you have missing = "ml", a robust test statistic, a model with exogenous covariates, fixed.x = TRUE (=the default), and you request fit measures (quickfix: use fixed.x = FALSE) (see github issue 261)
-    -   lavPredictY() did not work properly when newdata= was used, and meanstructure = FALSE; in addition, the columns in the output could be in the wronger order if the order of ynames was different than the order of lavNames() (see github issue 259)
+    -   lavPredictY() did not work properly when newdata= was used, and meanstructure = FALSE; in addition, the columns in the output could be in the wrong order if the order of ynames was different than the order of lavNames() (see github issue 259)
     -   the NACOV and WLS.V matrices (if provided as arguments) naively assume that the internal order of the observed variables is the same as the order of the sample statistics (see github issue 260)
 
 ##### Version 0.6-12
@@ -293,7 +365,7 @@ title: 0.6 series
     -   test = "yuan.bentler" now always uses observed.information = "h1" (if information is observed) and omega.h1.information = "unstructured"
     -   lavResiduals() has a new output = "table" argument
     -   rotations.se = "bordered" per default (only used when rotation is used)
-    -   in a multiple group analysis, a single modifier is always recycled accross; this is now also true for labels (with a warning, unless group.equal= is used)
+    -   in a multiple group analysis, a single modifier is always recycled across; this is now also true for labels (with a warning, unless group.equal= is used)
 -   Known issues:
     -   same as 0.6-1
 -   Bugs/glitches discovered after the release:
@@ -347,7 +419,7 @@ title: 0.6 series
 
 -   Released on CRAN: 28 Aug 2019
 -   New features and user-visible changes:
-    -   a new option \`effect.coding' can be used to scale the latent variables; a typical use is effect.coding = "loadings", or effect.coding = c("loadings", "intercepts"); if "loadings" is included, equality constraints are used so that the average of the factor loadings (per latent variable) equals 1; if "intercepts" is included, equality constraints are used so that the sum of the intercepts (belonging to the indicators of a single latent variable) equals zero; as a shortcut, you can also set effect.coding = TRUE, which implies effect.coding = c("loadings", "intercepts"); note that his may not work well with bifactor models, or any other type of model where items depend on multiple factors
+    -   a new option \`effect.coding' can be used to scale the latent variables; a typical use is effect.coding = "loadings", or effect.coding = c("loadings", "intercepts"); if "loadings" is included, equality constraints are used so that the average of the factor loadings (per latent variable) equals 1; if "intercepts" is included, equality constraints are used so that the sum of the intercepts (belonging to the indicators of a single latent variable) equals zero; as a shortcut, you can also set effect.coding = TRUE, which implies effect.coding = c("loadings", "intercepts"); note that this may not work well with bifactor models, or any other type of model where items depend on multiple factors
     -   summary(fit, nd = 4) now shows 4 digits (after the decimal point) for all (non-integer) numbers, including the header; the header has been re-arranged slightly: the estimator is now shown on the top; the test statistic(s) are now in a section 'Model Test User Model:'
     -   the test= argument now accepts a vector of multiple test statistics, for example test = c("satorra.bentler", "mean.var.adjusted")
     -   parameterEstimates(), standardizedSolution() and fitMeasures() have a new output= argument which can be set to "text" for pretty printing
@@ -383,7 +455,7 @@ title: 0.6 series
     -   same as 0.6-1 (although many long standing github issues have been resolved)
 -   Bugs/glitches discovered after the release:
     -   twolevel models: standard errors are off for fixed effects (only) if the model contains a regression of the form y \~ x, both variables are observed, and x is not centered
-    -   twolevel models: the chi-square test statistic for the baseline model is wrong (too low): the chi-square test statistic for the full model was substracted; therefore, if the user model fitted really bad, the baseline test statistic was too low; if the user model fitted reasonably well, there was (almost) no impact on the CFI/TLI fit measures
+    -   twolevel models: the chi-square test statistic for the baseline model is wrong (too low): the chi-square test statistic for the full model was subtracted; therefore, if the user model fitted really bad, the baseline test statistic was too low; if the user model fitted reasonably well, there was (almost) no impact on the CFI/TLI fit measures
     -   lavPredict(): labels were wrong in the multigroup twolevel case
 
 ##### Version 0.6-3

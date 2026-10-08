@@ -5,9 +5,14 @@ format: html
 
 ### News:
 
-- (21 September 2025): lavaan version 0.6-20 has been released on
-[CRAN](https://cran.r-project.org/web/packages/lavaan/). See [Version
-History](http://lavaan.ugent.be/history/dot6.html) for more information.
+- (8 Oct 2026): lavaan version 0.7-3 has been released on
+[CRAN](https://cran.r-project.org/web/packages/lavaan/). 
+See [Version
+History](http://lavaan.ugent.be/history/dot7.html) for more information.
+
+- (5 Dec 2025): two new [tutorials](https://lavaan.ugent.be/resources/tutorial.html) are available: "How to evaluate theory-based hypotheses in a lavaan 
+model using the GORICA", and "A Tutorial for Understanding SEM using R: Where Do All the Numbers Come From?"
+
 
 ### What is lavaan?
 

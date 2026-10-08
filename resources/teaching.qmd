@@ -2,13 +2,13 @@
 title: Teaching Materials
 ---
 
-This page will collect teaching materials involving lavaan. If you have teaching materials you would like to share, please contact us, and will put them here online. Recent materials are on the top. A selection of my own materials can be found at the bottom of the page.
+This page will collect teaching materials involving lavaan. If you have teaching materials you would like to share, please contact us, and we will put them here online. Recent materials are on the top. A selection of my own materials can be found at the bottom of the page.
 
 -   [Lavaan: how to get started](https://www.rensvandeschoot.com/tutorials/lavaan-how-to-get-started/): a short tutorial to get you started developed by Naomi Schalken and Rens van de Schoot.
 
--   [Latent variable modelling of cross-national survey data](http://essedunet.nsd.uib.no/cms/topics/latentvar/): an introduction to Factor Analysis and SEM with examples both in both STATA and lavaan, written by Myrsini Katsikatsou and Jouni Kuha ([LSE](http://www.lse.ac.uk/statistics/research/Social-Statistics/Index.aspx))
+-   [Latent variable modelling of cross-national survey data](http://essedunet.nsd.uib.no/cms/topics/latentvar/): an introduction to Factor Analysis and SEM with examples in both STATA and lavaan, written by Myrsini Katsikatsou and Jouni Kuha ([LSE](http://www.lse.ac.uk/statistics/research/Social-Statistics/Index.aspx))
 
--   One week workshop on SEM and R (using lavaan) in Spanish, prepared by Mauricio Garnier-Villarreal ([Center for Research Methods and Data Analysis](http://http://www.crmda.ku.edu/), University of Kansas): [slides](http://users.ugent.be/~yrosseel/lavaan/MGV_slides.zip) and [R code](http://users.ugent.be/~yrosseel/lavaan/MGV_R.zip)
+-   One week workshop on SEM and R (using lavaan) in Spanish, prepared by Mauricio Garnier-Villarreal ([Center for Research Methods and Data Analysis](http://www.crmda.ku.edu/), University of Kansas): [slides](http://users.ugent.be/~yrosseel/lavaan/MGV_slides.zip) and [R code](http://users.ugent.be/~yrosseel/lavaan/MGV_R.zip)
 
 -   Tutorial paper on \`Factor Analysis using R', written by Alex Beaujean (Baylor University) can be found [here](http://pareonline.net/pdf/v18n4.pdf).
 

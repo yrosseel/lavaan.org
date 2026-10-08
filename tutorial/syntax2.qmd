@@ -40,7 +40,7 @@ fit.HS.ortho <- cfa(HS.model,
                     orthogonal = TRUE)
 ```
 
-Similarly, if you want to fix the variances of *all* the latent variables in a CFA model to unity, there is again a shortcut. Simply add the argument `std.lv = TRUE` to the function call:
+Similarly, if you want to fix the variances of *all* the latent variables in a CFA model to unity, there is again a shortcut. Simply add the argument `std_lv = TRUE` to the function call:
 
 ```{r eval=FALSE, tidy=FALSE}
 HS.model <- ' visual  =~ x1 + x2 + x3
@@ -49,10 +49,10 @@ HS.model <- ' visual  =~ x1 + x2 + x3
 
 fit <- cfa(HS.model, 
            data = HolzingerSwineford1939, 
-           std.lv = TRUE)
+           std_lv = TRUE)
 ```
 
-If the argument `std.lv = TRUE` is used, the factor loadings of the first indicator of each latent variable will no longer be fixed to 1.
+If the argument `std_lv = TRUE` is used, the factor loadings of the first indicator of each latent variable will no longer be fixed to 1.
 
 ## Starting Values
 
@@ -66,7 +66,7 @@ speed   =~ x7 + start(0.7)*x8 + start(1.8)*x9
 
 ## Parameter labels
 
-A nice property of the lavaan package is that all free parameters are automatically named according to a simple set of rules. This is convenient, for example, if equality constraints are needed (see the next subsection). To see how the naming mechanism works, we will use the model that we used for the Politcal Democracy data.
+A nice property of the lavaan package is that all free parameters are automatically named according to a simple set of rules. This is convenient, for example, if equality constraints are needed (see the next subsection). To see how the naming mechanism works, we will use the model that we used for the Political Democracy data.
 
 ```{r tidy=FALSE, comment=""}
 model <- '

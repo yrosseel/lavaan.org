@@ -51,16 +51,16 @@ three-factor H&S CFA model as follows:
 fit <- cfa(HS.model, 
            data = HolzingerSwineford1939, 
            meanstructure = TRUE)
-summary(fit, remove.unused = FALSE)
+summary(fit, remove_unused = FALSE)
 ```
 
 As you can see in the output, the model includes intercept parameters for both
 the observed and latent variables. By default, the `cfa()` and `sem()`
 functions fix the latent variable intercepts (which in this case correspond to
 the latent *means*) to zero. Otherwise, the model would not be estimable. 
-Note the use of `remove.unused = FALSE` in the `summary()` call.
+Note the use of `remove_unused = FALSE` in the `summary()` call.
 This ensures that the fixed-to-zero latent intercepts are shown in the output.
-Since lavaan 0.6-17, these `unused' parameters (that are not mentioned
+Since lavaan 0.6-17, these 'unused' parameters (that are not mentioned
 in the model syntax, but added automatically to the parameter table, with
 a default value) are no longer shown in the output (by default).
 

@@ -66,8 +66,8 @@ title: 0.5 series
     -   the "?"-modifier (as shortcut for start()\*) did not work in many settings (eg multiple groups)
     -   combination of arguments se="robust.sem" and information="observed" was allowed and gave an error
     -   lavTestLRT(, method="satorra.2000") failed in the multiple group case
-    -   combination se="robust" and esetimator="ULS" did not work
-    -   if data was a tiblle, lavaan would fail
+    -   combination se="robust" and estimator="ULS" did not work
+    -   if data was a tibble, lavaan would fail
     -   fabin.uni() fails when trying to invert a singular matrix
     -   WLS.VD was NULL when WLS.V was user-specified
     -   lavtable(,dim=1) gave wrong frequencies in the presence of empty cells
@@ -106,7 +106,7 @@ title: 0.5 series
     -   the parameter table still contains the 'unco' and 'eq.id' columns, although they are not used anymore (they will be removed in 0.5-19)
     -   lav_partable_df() does not take the equality constraints into account
 -   Bugs/glitches discovered after the release:
-    -   lavTestLRT(,method = "sattora.2000") gives the wrong result if the restricted model contains parameters that are free in the restricted model, but fixed in the full model; a typical example is when comparing the weak invariance versus the strong invariance model (the latent means are free in the strong invariance model)
+    -   lavTestLRT(,method = "satorra.2000") gives the wrong result if the restricted model contains parameters that are free in the restricted model, but fixed in the full model; a typical example is when comparing the weak invariance versus the strong invariance model (the latent means are free in the strong invariance model)
     -   the modifier c(NA,NA)\* does not work (in a multiple group analysis)
     -   labels for the augmented part in lavInspect(fit, "augmented.information") are missing, resulting in an error
     -   the post-estimation checks sometimes produce a false warning that the model-implied covariance matrix of the latent variables is non-positive definite (only when \`dummy' (phantom) latent variables are involved in the model)
@@ -122,15 +122,15 @@ title: 0.5 series
     -   more low-level functions are now public: lav_partable_independence, lav_partable_unrestricted, lav_partable_npar, lav_partable_ndat, lav_partable_df, lav_func_gradient_complex, lav_func_gradient_simple, lav_func_jacobian_complex, lav_func_jacobian_simple
 -   Known issues:
     -   marginal ML limitations: same as 0.5-16
-    -   modindices() does not work in models with both explictit equality constraints (==), and label-based (or group.equal based) equality constraints
+    -   modindices() does not work in models with both explicit equality constraints (==), and label-based (or group.equal based) equality constraints
     -   resid(, "casewise") fails in the presence of exogenous covariates
 -   Bugs/glitches discovered after the release:
 -   resid(,"obs") fails if the model contains exogenous covariates
 -   parameterization="theta" does not work in a multiple group analysis if there are exogenous covariates in the model
 -   when a variable in the model syntax was called \`label', this would confuse the syntax parser
--   modindices() did not (alwayw) work when estimator = "WLS"
+-   modindices() did not (always) work when estimator = "WLS"
 -   pc_cor_TS (the function computing polychoric correlations) could fail (integer overflow) in very large samples
--   std.all was wrong for covariances ("\~\~") where the lhs was a factor, while the rhs was a observed variable (and hence fixed.x = FALSE)
+-   std.all was wrong for covariances ("\~\~") where the lhs was a factor, while the rhs was an observed variable (and hence fixed.x = FALSE)
 -   std.ov = TRUE fails when the model contains (exactly) one exogenous variable
 -   standard errors of standardized parameters (as shown in the output of the standardizedSolution() function) are mostly wrong, because they do not take the sampling variability of the latent variables into account
 -   lavTestLRT() does not warn (or throw an error) if the restricted model (H0) contains model parameters that are free in H0, but fixed in H1. A common example of this is in measurement invariance testing when testing for strong (versus weak) invariance (by default, the strong invariance model will free up the latent means). In combination with SB.classic = FALSE, the resulting test statistic is not correct (Note: 0.5-18 does not solve this, but issues a warning when H0 contains such free parameters). In general, SB.classic = FALSE only works correctly when the free parameters in H0 are a subset of the free parameters of H1.
@@ -157,10 +157,10 @@ title: 0.5 series
 -   predict() with continuous observed variables fails in the presence of exogenous covariates
 -   when we have both continuous and categorical (endogenous) variables, the latter with more than 2 response categories, the signs of the thresholds/means are reversed (although the estimates are accurate)
 -   simulateData() with skewness/kurtosis argument(s) (ie using ValeMaurelli) sometimes resulted in wrong means for the observed variables, due to the scale() function which first centers, and then scales (while it should be the other way around). This has no effect on the covariance structure.
--   simuldateData() failed (cov.x error) in the presence of exogenous covariates and if standardized = TRUE
+-   simulateData() failed (cov.x error) in the presence of exogenous covariates and if standardized = TRUE
 -   free residual covariances between ordered endogenous variables are set to zero (post-estimation) under parameterization="delta" (the default)
 -   anova(..., SB.classic = FALSE) complains about multiple actual arguments
--   modindices() fails when parameteriation = "theta"
+-   modindices() fails when parameterization = "theta"
 -   summary(.., rsquare = TRUE) does not show the R-square values (while inspect(, "rsquare") works)
 
 ##### Version 0.5-15
@@ -171,7 +171,7 @@ title: 0.5 series
     -   lavTables() has been redesigned
     -   zero.add and zero.keep.margins arguments control how lavaan deals with missing values in bivariate frequency tables
     -   PML estimator uses a different objective function and converges (much) faster
-    -   inspect(fit, "covarage") and inspect(fit, "patterns") return information about missingness coverage and missing patterns respectively
+    -   inspect(fit, "coverage") and inspect(fit, "patterns") return information about missingness coverage and missing patterns respectively
 -   Known issues:
     -   parameterization="theta" is not implemented yet
     -   (marginal) ML estimation for categorical data is not implemented yet
@@ -200,7 +200,7 @@ title: 0.5 series
     -   the (rarely used) ":" operator added an extra group
     -   predict() and resid(, "casewise") fail in the presence of exogenous covariates
     -   RMSEA is using N-g (instead of N) even if likelihood == "normal"
-    -   0.5 was added to all bivariate frequency cell; for larger tables with many empty cells, this may distort the polychoric correlation in small samples
+    -   0.5 was added to all bivariate frequency cells; for larger tables with many empty cells, this may distort the polychoric correlation in small samples
     -   poor starting values (always 1) for factor loadings if only two indicators
 
 ##### Version 0.5-13
@@ -253,7 +253,7 @@ title: 0.5 series
 
 ##### Version 0.5-10
 
--   Released on CRAN: 25 Okt 2012
+-   Released on CRAN: 25 Oct 2012
 -   New features and user-visible changes:
     -   modification indices, Rsquare now work if data is categorical
     -   changed package mvtnorm to package mnormt, resulting in (slightly) faster computations of the thresholds and polychoric correlations in some cases

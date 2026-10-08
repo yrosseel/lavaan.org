@@ -4,7 +4,7 @@ title: 0.3 series
 
 ##### Version 0.3-3
 
--   Released on CRAN: 19 Januari 2011
+-   Released on CRAN: 19 January 2011
 -   only a fix for a missing link in the documentation
 
 ##### Version 0.3-1

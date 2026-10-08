@@ -6,7 +6,7 @@ title: "Features"
 
 -   by default, lavaan implements the textbook/paper formulas, so there are no surprises
 
--   lavaan can mimic many results of several commercial packages (including Mplus and Eqs using the `mimic="Mplus"` or `mimic="EQS"` arguments)
+-   lavaan can partially mimic results of the commercial package Mplus via the `mimic = "Mplus"` argument
 
 -   lavaan is not a black box: you can browse the source code on [GitHub](https://github.com/yrosseel/lavaan/)
 
@@ -25,12 +25,12 @@ myModel <- '
     f3 =~ item7 + item8 + item9
 '
 fit <- cfa(model = myModel, data = myData)
-summary(fit, fit.measures = TRUE)
+summary(fit, fit_measures = TRUE)
 ```
 
 -   you can choose between a user-friendly interface in combination with the fitting functions `cfa()` and `sem()` or a low-level interface using the fitting function `lavaan()` where 'defaults' do not get in the way
 
--   convenient arguments (eg. `group.equal="loadings"`) simplify many common tasks (eg. measurement invariance testing)
+-   convenient arguments (eg. `group_equal="loadings"`) simplify many common tasks (eg. measurement invariance testing)
 
 -   lavaan outputs all the information you need: a large number of fit measures, modification indices, standardized solutions, and technical information that is stored in a fitted lavaan object
 
@@ -38,16 +38,24 @@ summary(fit, fit.measures = TRUE)
 
 -   full support for meanstructures and multiple groups
 
--   several estimators are available: ML (and robust variants MLM, MLMV, MLR), GLS, WLS (and robust variants DWLS, WLSM, WLSMV), ULS (ULSM, ULMV), DLS, and pairwise ML (PML)
+-   several estimators are available: ML (and robust variants MLM, MLMV, MLR), GLS, WLS (and robust variants DWLS, WLSM, WLSMV), ULS (ULSM, ULSMV), DLS, (MI)IV, and pairwise ML (PML)
 
 -   standard errors: standard, robust/huber-white/sandwich, bootstrap
 
--   test statistics: standard, Satorra-Bentler, Yuan-Bentler, Satterthwaite, scaled-shifted, Bollen-Stine bootstrap
+-   test statistics: standard, Satorra-Bentler, Yuan-Bentler, Satterthwaite, scaled-shifted, Bollen-Stine bootstrap, the FMG family, Hayakawa
 
--   missing data: FIML estimation
+-   missing data: FIML estimation or two.stage (for multiple imputation,
+    see the lavaan.mi package)
 
 -   linear and nonlinear equality and inequality constraints
 
--   full support for analyzing **categorical data**: lavaan (from version 0.5 onwards) can handle any mixture of binary, ordinal and continuous observed variables
+-   full support for analyzing categorical data: lavaan (from version 0.5 onwards) can handle any mixture of binary, ordinal and continuous observed variables (using ULS(MV), (D)WLS(MV) or PML estimators; but not ML)
 
--   (from version 0.6 onwards): support for **multilevel level SEM**
+-   (from version 0.6 onwards): support for multilevel SEM (two levels
+    only); (from version 0.7 onwards): support for random slopes
+
+-   apart from the default 'nlminb()' optimizer, lavaan also offers the
+    EM algorithm for multilevel models, and Gauss-Newton (optim_method = "gn")
+    alternatives
+
+-   the sam() function provides convenient access to several "structural-after-measurement" (SAM) approaches, including local SAM (LSAM)

@@ -6,7 +6,7 @@ title: Book Chapters
 
 On this page, we collect book chapters written about lavaan. They can contain tutorials, examples, or perhaps illustrate how to fit a complicated model using lavaan.
 
-#### Structural Equation Modeling: an applied approach for Engineers (Portugese)
+#### Structural Equation Modeling: an applied approach for Engineers (Portuguese)
 
 ::: grid
 ::: g-col-4

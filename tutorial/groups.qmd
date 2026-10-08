@@ -61,7 +61,7 @@ Again, identical labels imply identical parameters, both within and across group
 
 ## Constraining groups of parameters to be equal across groups
 
-Although providing identical labels is a very flexible method to specify equality constraints for a few parameters, there is a more convenient way to impose equality constraints on a whole set of parameters (for example: all factor loadings, or all intercepts). We call these type of constraints *group equality constraints* and they can be specified by the argument `group.equal` in the fitting function. For example, to constrain (all) the factor loadings to be equal across groups, you can proceed as follows:
+Although providing identical labels is a very flexible method to specify equality constraints for a few parameters, there is a more convenient way to impose equality constraints on a whole set of parameters (for example: all factor loadings, or all intercepts). We call these *group equality constraints* and they can be specified by the argument `group_equal` in the fitting function. For example, to constrain (all) the factor loadings to be equal across groups, you can proceed as follows:
 
 ```{r tidy=FALSE, comment=""}
 HS.model <- ' visual  =~ x1 + x2 + x3
@@ -70,11 +70,11 @@ HS.model <- ' visual  =~ x1 + x2 + x3
 fit <- cfa(HS.model, 
            data = HolzingerSwineford1939, 
            group = "school",
-           group.equal = c("loadings"))
+           group_equal = c("loadings"))
 summary(fit)
 ```
 
-The `.p2.`, `.p3.`, `.p5`, ... labels which appear in the output have been auto-generated to impose the equality constraints. More 'group equality constraints' can be added. In addition to the factor loadings, the following keywords are supported in the `group.equal` argument:
+The `.p2.`, `.p3.`, `.p5.`, ... labels which appear in the output have been auto-generated to impose the equality constraints. More 'group equality constraints' can be added. In addition to the factor loadings, the following keywords are supported in the `group_equal` argument:
 
 -   `intercepts`: the intercepts of the observed variables
 -   `means`: the intercepts/means of the latent variables
@@ -84,16 +84,16 @@ The `.p2.`, `.p3.`, `.p5`, ... labels which appear in the output have been auto-
 -   `lv.covariances`: the (residual) covariances of the latent variables
 -   `regressions`: all regression coefficients in the model
 
-If you omit the `group.equal` argument, all parameters are freely estimated in each group (but the model structure is the same).
+If you omit the `group_equal` argument, all parameters are freely estimated in each group (but the model structure is the same).
 
-But what if you want to constrain a whole group of parameters (say all factor loadings and intercepts) across groups, except for one or two parameters that need to stay free in all groups. For this scenario, you can use the argument `group.partial`, containing the names of those parameters that need to remain free. For example:
+But what if you want to constrain a whole group of parameters (say all factor loadings and intercepts) across groups, except for one or two parameters that need to stay free in all groups? For this scenario, you can use the argument `group_partial`, containing the names of those parameters that need to remain free. For example:
 
 ```{r eval=FALSE, tidy=FALSE}
 fit <- cfa(HS.model, 
            data = HolzingerSwineford1939, 
            group = "school",
-           group.equal = c("loadings", "intercepts"),
-           group.partial = c("visual=~x2", "x7~1"))
+           group_equal = c("loadings", "intercepts"),
+           group_partial = c("visual=~x2", "x7~1"))
 ```
 
 ## Measurement invariance testing
@@ -118,11 +118,11 @@ fit1 <- cfa(HS.model, data = HolzingerSwineford1939, group = "school")
 
 # weak invariance
 fit2 <- cfa(HS.model, data = HolzingerSwineford1939, group = "school",
-            group.equal = "loadings")
+            group_equal = "loadings")
 
 # strong invariance
 fit3 <- cfa(HS.model, data = HolzingerSwineford1939, group = "school",
-            group.equal = c("intercepts", "loadings"))
+            group_equal = c("intercepts", "loadings"))
 
 # model comparison tests
 lavTestLRT(fit1, fit2, fit3)

@@ -74,13 +74,13 @@ myModel <- ' # regressions
            '
 ```
 
-There reason why you should use single quotes is that this is the only way (in R) to allow for double quotes inside a string. See `?Quotes` in R for more information.
+The reason why you should use single quotes is that this is the only way (in R) to allow for double quotes inside a string. See `?Quotes` in R for more information.
 
 You can type this syntax interactively at the R prompt, but it is much more convenient to type the whole model syntax first in an external text editor. And when you are done, you can copy/paste it to the R console. If you are using [RStudio](http://www.rstudio.com/), open a new 'R script', and type your model syntax (and all other R commands needed for this session) in the source editor of RStudio. And save your script, so you can reuse it later on.
 
-The code piece above will produce a model syntax object, called `myModel` that can be used later when calling a function that actually estimates this model given a dataset. Note that formulas can be split over multiple lines, and you can use comments (starting with the `#` character) and blank lines within the single quotes to improve the readability of the model syntax.
+The code snippet above will produce a model syntax object, called `myModel` that can be used later when calling a function that actually estimates this model given a dataset. Note that formulas can be split over multiple lines, and you can use comments (starting with the `#` character) and blank lines within the single quotes to improve the readability of the model syntax.
 
-You may split your model syntax is multiple parts. For example:
+You may split your model syntax into multiple parts. For example:
 
 ```{r eval=FALSE, tidy=FALSE}
 part1 <- '   # latent variable definitions 

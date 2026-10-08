@@ -1,0 +1,279 @@
+---
+title: 0.7 series
+---
+
+##### Version 0.7-3
+
+-   Released on CRAN: 8 October 2026
+-   New features and user-visible changes:
+    - the transition to snake_case is now (almost) complete: the
+      documentation and all messages use the snake_case option names; the
+      elements of list-valued options (estimator_args, rotation_args,
+      fm_args, ...) are now also snake_case; the keywords used as selectors
+      (the what= argument of lavInspect(), fit measure names, type=,
+      method=, ...) can be written with dots or underscores, in lower or
+      upper case; the old (dotted) names still work
+    - estimator = "ML": Browne's residual-based test (model-based, normal
+      theory; "browne.residual.nt.model") is now computed by default and
+      shown in the summary, next to the standard chi-square test; in small
+      samples, its type I error rates are much closer to the nominal level
+    - categorical data + estimator WLSMV/ULSMV (and friends): the 'bread' of
+      the sandwich used for the robust standard errors is now based on the
+      observed information (instead of the expected information); for mixed
+      (ordered + continuous) data, observed derivatives are now used for the
+      continuous variables; as a result, the standard errors may differ
+      slightly from 0.7-2 (use information_bread = "expected" to get the
+      classic standard errors); point estimates and test statistics are
+      not affected
+    - new option information_bread= to set the type of information used
+      for the bread of the sandwich, independent of the meat; new option
+      information_meat_hc= for small-sample (HC1/HC2/HC3) corrections of
+      the robust (sandwich) standard errors
+    - correlation structures (correlation = TRUE): the default estimator is
+      now ML (instead of GLS); support for conditional_x = TRUE, a mean
+      structure, missing = "ml", composites, and partial correlation
+      structures; lavPredict() now works in the correct metric
+    - new rescale_data option: if the variances of the observed variables
+      are very different, the variables are internally rescaled (by
+      default), and the solution is transformed back to the original
+      metric
+    - if the first indicator of a latent variable is a poor marker, lavaan
+      now only produces a warning (and no longer switches to another
+      marker automatically); to switch the marker, use
+      bad_marker_switch = TRUE (github issue 628)
+    - new function lavTestNET() for nesting and equivalence testing;
+      lavTestLRT() now checks if the models are nested (check_nested = TRUE),
+      and warns if the models were not fitted to the same data
+    - new function lavH1() to compute the unrestricted (h1) sample statistics
+      (optionally with standard errors); with output = "lavMoments", the
+      result can be used to refit a model from summary statistics only
+      (including two-stage and least-squares approaches)
+    - the noniterative estimators "JS"/"JSA" (James-Stein) and "MGM"
+      (multiple group method) have been rewritten, and now offer (delta
+      method) standard errors, Browne's residual-based test, fit measures,
+      multiple groups, equality constraints, and two-stage missing data
+      (see ?estimator_js); "MGM" also handles cross-loadings and correlated
+      residuals, and can be used for the measurement blocks in sam()
+    - estimator = "IV": new iv_method = "LIML" and "FULLER" (next to the
+      default "2SLS"); much faster standard errors for multiple groups
+    - new operator ":~" for data-defined (moderated) parameters, where a
+      parameter is a function of observed variables (wrapped in data());
+      lavaan only handles the syntax and the housekeeping; the estimation
+      is left to external backends
+    - rotation: the gradient projection algorithm now uses a
+      Barzilai-Borwein step size (faster); see the new gpa_algorithm
+      element of rotation_args (use "legacy" for the old behavior)
+    - the optimizer now detects 'runaway' solutions (where a parameter
+      drifts to infinity) instead of reporting convergence
+    - sam(): local sam + latent interactions now supports missing = "ml";
+      new local options (lambda1_floor, lambda2_floor) for a (debiased)
+      truncation of the lambda correction in small samples/low reliability
+      settings, with standard errors that take the truncation into account;
+      the corrected (Hayakawa) adjusted test statistics are now available
+      for the structural part of a local sam model
+    - sam(): se = "local" now uses the observed information for the bread
+      of the structural sandwich
+    - lavPredict(): transform = TRUE now also works for categorical data,
+      and for missing = "ml" (github issue 624)
+    - missing = "two.stage"/"robust.two.stage" now supports sampling weights
+    - lavInspect()/lavTech(): many new keywords to extract the internals of
+      the data and sample statistics slots (e.g., "sampling_weights",
+      "patterns_stats"), the constraints ("constraints", "con_jac") and the
+      results of the random starts ("rstarts")
+    - a warning is given if the sample_cov= matrix is not symmetric
+    - continuous data + missing = "pairwise" + robust standard errors/test
+      statistics now results in an informative error (for the ML and GLS
+      estimators, if the data contain missing values)
+    - mimic = "EQS" and mimic = "LISREL" now set fixed_x = FALSE
+-   Bugs/glitches discovered after the release:
+    -   (just released)
+
+##### Version 0.7-2
+
+-   Released on CRAN: 16 July 2026
+-   New features and user-visible changes:
+    - the formal arguments of (almost) all user-facing functions have been
+      renamed to snake_case (e.g. sampling.weights -> sampling_weights,
+      sample.cov -> sample_cov, int.ov.free -> int_ov_free); the old
+      (dotted) names still work, but are deprecated and may be removed in
+      a future release; the same holds for the lavaan option names, which
+      may now also be written in snake_case or with capital letters; in
+      the next release of lavaan (0.7-3), we hope to finalize this transition
+      to the snake_case pattern, thereby complying with modern coding
+      guidelines
+    - the 'open' syntax parser is now the default
+    - new operator "|~" to specify (external) instruments
+    - new estimator = "IV" for model-implied instrumental variables (MIIV-2SLS)
+      estimation; supports multiple groups, categorical data, (simple)
+      equality constraints, two-stage missing data, user-specified/external
+      instruments, and Sargan/Hansen overidentification tests (see ?estimator_iv      for more information and examples)
+    - two-level (D)WLS estimation, including WLSMV for categorical data, and
+      exogenous covariates (fixed_x/conditional_x) 
+    - random slopes for two-level models via the new rv() modifier; ML (nlminb
+      and EM), robust (MLR) standard errors, empirical-Bayes predictions, and
+      support for both complete and missing (missing = "ml") data (continuous
+      data only) (see the Multilevel section in the tutorial for an example)
+    - optim.method = "em" is now the default for twolevel + missing = "ml";
+      EM acceleration (SQUAREM and quasi-Newton) and analytic (Louis) observed
+      information for faster/more accurate standard errors
+    - composites (using the "<~" operator) now use an analytic gradient (the
+      optim.gradient = "numerical" workaround is no longer needed), and gain a
+      robust mean structure, higher-order factors, multilevel support, and a
+      new composites_cov option
+    - initial support for the reduced-bias M-estimation (RBM) framework
+      to improve finite-sample bias 
+      (see [this](https://doi.org/10.1080/10705511.2025.2610462) paper)
+    - new Foldnes-Moss-Gronneberg (FMG) test statistics; new
+      Hayakawa test statistic: test = "mean.var.adjusted.corrected" and 
+      "scaled.shifted.corrected"  (see ?lavTestLRT and ?lavTest for references)
+    - sampling weights: new sampling.weights.type= argument (design vs
+      frequency weighting), per-group normalization by default, and a properly
+      weighted Gamma (NACOV) for the least-squares estimators
+    - a new goodness-of-fit index (GFI, Maydeu-Olivares et al. 2024) is
+      added to fitMeasures(); the old gfi/agfi are renamed 
+      gfi_lisrel/agfi_lisrel
+    - lavResiduals() overhaul: output = "text" (with largest-residuals tables),
+      per-element residual standard errors with z-tests, support for
+      conditional.x and multilevel models, and a user-provided h1= saturated
+      model
+    - new function lavEffects() for total/indirect/direct effects, with
+      delta-method, Monte Carlo and bootstrap standard errors
+    - new function lavResidualsY() for residuals of the 'y' variables
+    - sam(): cluster-robust standard errors for single-level clustered data,
+      local standard errors and a corrected structural test for two-level
+      models, and the Yuan-Chan rescaled test for sam.method = "global"
+    - sam(): conditional.x = TRUE is now supported, both for continuous and
+      categorical (ordinal indicators and ordered outcomes) data, including
+      a corrected structural test and robust standard errors; new
+      (experimental) se = "twostep.huber.white"; se = "local" now also works
+      for estimator = "PML"
+    - sam(): fitMeasures(), lavResiduals(), modindices() and friends now work
+      on sam objects
+    - new se.def = "mc" for Monte Carlo standard errors/confidence intervals of
+      defined (":=") parameters; new se.delta.second.order option
+    - new aux= argument for auxiliary variables under missing data
+    - support for a partial correlation structure (a vector of variable names
+      passed to correlation=), including fixed.x = TRUE
+    - lavPredict(): standard errors for categorical factor scores; newdata= is
+      now supported for two-level models
+    - lavPredict()/lavInspect(): casewise Mahalanobis-distance diagnostics
+      (mdist=) are now also available for categorical/ordered data
+    - the estimator=, rotation= and bootstrap= arguments can now be given as a
+      list (replacing the separate \*.args arguments)
+    - missing = "ml" (FIML) and missing = "two.stage"/"robust.two.stage" now
+      support conditional.x = TRUE (single-level, continuous data), including
+      the standard errors and a correct Gamma (NACOV)
+    - new auto.cov.x option: freely estimate the covariances between latent
+      and observed exogenous variables (currently set to FALSE by default)
+    - multilevel models: level-specific fit measures (based on partially
+      saturated models) are shown in the summary and can be requested via
+      fitMeasures(fit, level = ...); controlled by the new fit_by_level option
+    - lavTestScore() and lavTestWald() now also report scaled, adjusted and
+      robust versions of their test statistics when a robust estimator is used
+    - optim.method = "gn" (Gauss-Newton) has been rewritten as a
+      Levenberg-Marquardt damped Fisher-scoring optimizer (faster and more
+      robust); its options now live in the gn_args= list
+    - ESEM: a separate rotation target matrix can be specified per EFA
+      block, via a named list in rotation_args$target
+-   Bugs/glitches discovered after the release:
+    -   the parsed-syntax cache could (rarely) return the parsed version of
+        a different model, if two model strings happened to share the same
+        hash key; the wrong model was then silently fitted (github issue 636)
+    -   the automatic marker switch (bad_marker_crit) could result in a
+        doubly-scaled factor (and negative latent variances) if the marker
+        loading was labeled and involved in an equality constraint; more
+        generally, switching the marker silently changed the metric of the
+        latent variable (github issue 628); see the 0.7-3 changes
+    -   mixed categorical + continuous data fitted from sample statistics:
+        the means/intercepts of the continuous variables had the wrong sign
+    -   categorical data (WLSMV) or correlation structures with an observed
+        mediator: the analytic Jacobian ignored the dependence of the
+        (derived) residual variance of the mediator on the regression
+        coefficients, resulting in convergence problems and/or (slightly)
+        wrong standard errors
+    -   composites + categorical data: the analytic model Jacobian was wrong
+    -   composites = FALSE crashed with the (new) open parser
+    -   passing rotation = list(...) to sem()/cfa()/lavaan() (instead of
+        efa()) failed (github issue 618)
+    -   rotation_se = "bordered" used the wrong variances to standardize the
+        rotated loadings when the rotation was oblique; rotation_se = "delta"
+        and "bordered" now give identical results
+    -   oblique GPA rotation could crash on a (numerically) singular
+        transformation matrix when factors collapse (e.g., oblimin with
+        gamma > 0)
+    -   lavTest(fit) returned NA (instead of the available test statistic)
+        for estimators without a standard chi-square test (e.g.,
+        estimator = "IV")
+    -   estimator = "IV": a label repeated within a single equation (e.g.,
+        y ~ a*x1 + a*x2) produced inconsistent estimates; the standard errors
+        of the intercepts used the wrong divisor when only sample statistics
+        were provided
+    -   the Browne residual-based NT test statistics were wrong in several
+        settings: (near) zero when fixed_x = TRUE and the 'y' block was
+        saturated, inflated when missing = "ml", and
+        "browne.residual.adf.model" ignored the model-based moments when
+        sampling weights were used
+    -   optim_parscale = "standardized" (also used in the automatic retry
+        attempts when the optimizer fails): the bounds were not rescaled, and
+        general (in)equality constraints (e.g., `a == 2*b`) were imposed on the
+        scaled parameters
+    -   a parameter with both a lower and an upper bound that was estimated
+        at its lower bound was not treated as an active constraint when
+        computing the standard errors
+    -   the baseline model for two-level categorical data could not be fitted
+        ("non-conformable arrays")
+    -   level-specific fit measures: the between-level RMSEA used the total
+        sample size instead of the number of clusters
+    -   two-level (D)WLS: the observed information matrix was not scaled
+        correctly
+    -   conditional_x = TRUE crashed when an observed variable only appeared
+        in covariance (`"~~"`) formulas
+    -   group_equal = "all" ignored an explicit meanstructure = FALSE
+        (github issue 631)
+    -   lavPredict(transform = TRUE) ignored the missing patterns when
+        missing = "ml" (github issue 624), and crashed when
+        conditional_x = TRUE
+    -   lavPredict(): the EBM/ML factor scores for categorical data were
+        wrong in the presence of a mean structure (intercepts/latent means
+        were added twice)
+    -   simulateData(empirical = TRUE) failed when skewness/kurtosis values
+        were provided (github issue 622); for multilevel data, a warning
+        about ignored arguments was always shown
+    -   sam(se = "standard") stopped with the error "object 'i_22' not found"
+        (github issue 626)
+    -   local sam() + latent interactions + missing = "ml": all standard
+        errors were NA (github issue 621)
+    -   local sam() + latent interactions (or quadratic terms) + more than
+        one measurement block: the step-1 contribution to the standard
+        errors (se = "local") used the wrong parameter order
+    -   re-applying sam() on a stored sam object failed when se = "local"
+    -   estimator = "PML" with ordered indicators, exogenous covariates and
+        missing = "available.cases" failed as soon as a response was missing;
+        do_fit = FALSE returned a wrong objective value (github issue 635)
+    -   post_check did not flag a non-positive-definite set of residual
+        covariances among ordered endogenous variables (github issue 633)
+    -   sampling weights + conditional_x = TRUE + missing = "pairwise"
+        failed (github issue 639)
+    -   cluster= + ordered data + missing = "pairwise": the cluster-robust
+        standard errors were NA (github issue 642)
+    -   estimator = "DWLS" + missing = "two.stage" + sampling weights
+        crashed; two-stage (ML) standard errors were not available with
+        sampling weights
+    -   correlation = TRUE + sample_cov=: the sample covariance matrix was
+        standardized too late, resulting in an inconsistent objective
+        function and gradient if the input was not a correlation matrix;
+        user-specified variances of observed variables were not fixed
+    -   defined parameters (using the ":=" operator) could be assigned to
+        the wrong rows if they were not specified in alphabetical order
+    -   model syntax using Windows line endings (CRLF) was not parsed
+        correctly
+    -   lavParTable(auto = TRUE) ignored model_type = "cfa"
+    -   objects created with (very) old versions of lavaan (< 0.5-19) could
+        no longer be read
+
+##### Version 0.7-1
+- This version was never released on CRAN. Development versions use the
+  0.Y-y.xxxx versioning scheme, where xxxx denotes the Git commit number.
+  Starting with the 0.7 series, the CRAN release will always have a higher
+  version number than the corresponding development versions (e.g.,
+  0.7-2 > 0.7-1.2959).

@@ -78,7 +78,7 @@ fitMeasures(fit, c("cfi","rmsea","srmr"))
 
 ## lavInspect
 
-If you want to peek inside a fitted lavaan object (the object that is returned by a call to `cfa()`, `sem()`or `growth()`), you can use the `lavInspect()` function, with a variety of options. By default, calling `lavInspect()` on a fitted lavaan object returns a list of the model matrices that are used internally to represent the model. The free parameters are nonzero integers.
+If you want to peek inside a fitted lavaan object (the object that is returned by a call to `cfa()`, `sem()` or `growth()`), you can use the `lavInspect()` function, with a variety of options. By default, calling `lavInspect()` on a fitted lavaan object returns a list of the model matrices that are used internally to represent the model. The free parameters are nonzero integers.
 
 ```{r comment=""}
 fit <- cfa(HS.model, data=HolzingerSwineford1939)

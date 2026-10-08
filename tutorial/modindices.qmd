@@ -16,7 +16,7 @@ A typical use of the `modindices()` function is as follows:
 ```{r comment = ""}
 fit <- cfa(HS.model,
            data = HolzingerSwineford1939)
-modindices(fit, sort = TRUE, maximum.number = 5)
+modindices(fit, sort = TRUE, maximum_number = 5)
 ```
 
 This will print out the top 5 parameters (that can be added to the model) that result in the largest modification index, sorted from high to low.

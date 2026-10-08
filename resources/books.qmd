@@ -100,7 +100,7 @@ If you have worked out the syntax for (many, perhaps not all) examples from a pa
 ::: g-col-8
 - book title: Confirmatory Factor Analysis for Applied Research
 - book author: Timothy A. Brown
-- book publisher: [Guildford Press](http://www.guilford.com/cgi-bin/cartscript.cgi?page=pr/brown3.htm)
+- book publisher: [Guilford Press](http://www.guilford.com/cgi-bin/cartscript.cgi?page=pr/brown3.htm)
 - R syntax (prepared by Jan Lammertyn, UGent) is available on [GitHub](https://github.com/janlammertyn/lavaan-material/tree/master/brown-cfa)
 :::
 :::
@@ -115,7 +115,7 @@ If you have worked out the syntax for (many, perhaps not all) examples from a pa
 ::: g-col-8
 - book title: Principles and Practice of Structural Equation Modeling (Third Edition)
 - book author: Rex B. Kline
-- book publisher: [Guildford Press](http://www.guilford.com/cgi-bin/cartscript.cgi?page=pr/kline.htm)
+- book publisher: [Guilford Press](http://www.guilford.com/cgi-bin/cartscript.cgi?page=pr/kline.htm)
 - R syntax (prepared by Catherine Gunsalus, Kansas University) is available (as a zip file) on [Github](https://github.com/rgroup-crmda/rgroup-crmda/blob/master/documentation/lavaan.Kline.examples.zip?raw=true)
 :::
 :::

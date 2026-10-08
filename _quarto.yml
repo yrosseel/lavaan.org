@@ -7,7 +7,7 @@ website:
 
   page-footer:
       right: "This page is built with [Quarto](https://quarto.org/)."
-      left: "&copy; CC-By the lavaan project, 2010-2024"
+      left: "&copy; CC-By the lavaan project, 2010-2026"
 
   navbar:
     background: secondary
@@ -72,6 +72,7 @@ website:
     - title: "Version History"
       contents:
         - history/index.qmd
+        - history/dot7.qmd
         - history/dot6.qmd
         - history/dot5.qmd
         - history/dot4.qmd

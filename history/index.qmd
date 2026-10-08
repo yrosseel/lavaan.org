@@ -9,6 +9,7 @@ and (most importantly) the bugs and issues that were reported for this version.
 
 Version history:
 
+-   lavaan [0.7 series](/history/dot7.html)
 -   lavaan [0.6 series](/history/dot6.html)
 -   lavaan [0.5 series](/history/dot5.html)
 -   lavaan [0.4 series](/history/dot4.html)

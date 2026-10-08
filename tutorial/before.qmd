@@ -8,7 +8,7 @@ Before you start, please read these points carefully:
 
 -   Some important features are NOT available (yet) in lavaan:
 
-    -   multilevel sem with random slopes (this is under development)
+    -   multilevel SEM with more than two levels (only two-level models are supported)
 
     -   support for variable types other than continuous, binary and ordinal (for example: zero-inflated count data, nominal data, non-Gaussian continuous data); it is unlikely that this will be part of lavaan any time soon, for the simple reason that these variable types need numerical quadrature, and this is too slow to be practical in (pure) R.
 
@@ -20,6 +20,6 @@ Before you start, please read these points carefully:
 
 -   If you need help, you can (only) ask questions in the lavaan discussion group. Go to <https://groups.google.com/d/forum/lavaan/> and join the group. Once you have joined the group, you can email your questions to [lavaan\@googlegroups.com](mailto:lavaan@googlegroups.com){.email}. Please do not email me directly.
 
--   I do not offer statistical advice. For general (non lavaan-specific) questions about SEM, consider posting to the SEMNET discussion group.
+-   I do not offer statistical advice. For general (non-lavaan-specific) questions about SEM, consider posting to the SEMNET discussion group.
 
 -   If you think you have found a bug, or if you have a suggestion for improvement, you can either email me directly, or open an issue on github (see <https://github.com/yrosseel/lavaan/issues>). If you report a bug, always provide a minimal reproducible example (a short R script and some data).

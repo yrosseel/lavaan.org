@@ -125,7 +125,7 @@ fit <- sem(model, data = PoliticalDemocracy)
 summary(fit, standardized = TRUE)
 ```
 
-The function `sem()` is very similar to the function `cfa()`. In fact, the two functions are currently almost identical, but this may change in the future. In the `summary()` function, we omitted the `fit.measures = TRUE` argument. Therefore, you only get the basic chi-square test statistic. The argument `standardized = TRUE` augments the output with standardized parameter values. Two extra columns of standardized parameter values are printed. In the first column (labeled `Std.lv`), only the latent variables are standardized. In the second column (labeled `Std.all`), both latent and observed variables are standardized. The latter is often called the 'completely standardized solution'.
+The function `sem()` is very similar to the function `cfa()`. In fact, the two functions are currently almost identical, but this may change in the future. In the `summary()` function, we omitted the `fit_measures = TRUE` argument. Therefore, you only get the basic chi-square test statistic. The argument `standardized = TRUE` augments the output with standardized parameter values. Two extra columns of standardized parameter values are printed. In the first column (labeled `Std.lv`), only the latent variables are standardized. In the second column (labeled `Std.all`), both latent and observed variables are standardized. The latter is often called the 'completely standardized solution'.
 
 The complete code to specify and fit this model is printed again below:
 

@@ -10,7 +10,7 @@ The lavaan package is free (as in beer) and open-source. We very much plan to
 keep it that way. But the [bus
 factor](https://en.wikipedia.org/wiki/Bus_factor) of the lavaan project is
 (currently) one, and the main developer (Yves Rosseel) finds it increasingly
-more difficult to find time to maintain (let alone further develop) lavaan.
+difficult to find time to maintain (let alone further develop) lavaan.
 
 At the same time, the user base of lavaan is expanding rapidly, and lavaan has
 become 'critical software' in many research domains.
@@ -22,14 +22,7 @@ more staff to support the lavaan project. One avenue is to ask for donations.
 
 From 1 July 2023 onwards, it is possible to donate money to the lavaan project.
 The money will go to [Ghent University](https://www.ugent.be/schenken/en), and
-will be used exclusively to hire qualified staff (at the post-doc level) that
-will support the lavaan project.
-Our initial goal is to raise about 120,000 euro (the gross salary of a post-doc in Flanders) to hire a qualified person for 1 full year (hopefully, starting in 2024). This person will assist the main developer to:
-
-1.  create high-quality documentation for users,
-2.  create detailed technical documentation (matching the code), and
-3.  create a public cloud-based quality-testing platform to ensure the correctness of the lavaan output (in particular after a new update).
-4.  add new features to lavaan (see plans below)
+will be used exclusively to support the lavaan project.
 
 ### **Plans for lavaan**
 
@@ -43,7 +36,6 @@ Our long-term goals are:
 - to grow an open source community of contributors
 - faster model estimation
 - more modularity and better connectivity with other software
-- other UX improvements
 
 In the medium term:
 
@@ -52,6 +44,8 @@ In the medium term:
 shrinkage estimators
 - outlier-robust estimation approaches
 - improved small sample inference
+- two-level SEM with random slopes
+- faster EM estimation for multilevel SEM
 - multilevel SEM with categorical data (using adaptive quadrature)
 - support for discrete latent variables (aka mixture modeling, latent class analysis)
 
@@ -59,10 +53,11 @@ More concretely, here are some future updates you can expect in the 0.6 series:
 
 - EFA for many groups (including alignment procedures and rotation methods
 that seek agreement across groups)
-- two-level SEM with random slopes
-- random starts
-- faster EM estimation for multilevel SEM
-- further extensions of the structural after measurement (SAM) approach (including support for latent interactions)
+- random starts (done)
+- further extensions of the structural after measurement (SAM) approach (including support for latent interactions) (done)
+- full support for non-iterative estimators, including James-Stein type
+shrinkage estimators and model-based instrumental variables (MIIV)
+
 
 If any of these sound like things you'd be interested in helping out with, head
 to the [Github repository](https://github.com/yrosseel/lavaan), and create a
